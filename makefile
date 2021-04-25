@@ -1,6 +1,6 @@
 CC      = gcc
 CFLAGS  = -Iinclude
-LDFLAGS = -lm
+LDFLAGS = -lglfw3 -lX11 -ldl -lpthread -lm
 BIN     = -o bin/app
 ENTRY   = main.c
 OBJ     = obj
