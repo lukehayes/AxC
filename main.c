@@ -1,5 +1,6 @@
-#include <stdio.h>
+#include <glad/glad.h>
 #include <GLFW/glfw3.h>
+#include <stdio.h>
 
 int main(int argc, char *argv[])
 {
@@ -19,12 +20,12 @@ int main(int argc, char *argv[])
     }
 
     glfwMakeContextCurrent(window);
-
+    gladLoadGLLoader((GLADloadproc) glfwGetProcAddress);
 
     while (!glfwWindowShouldClose(window))
     {
         /* Render here */
-        /*glClear(GL_COLOR_BUFFER_BIT);*/
+        glClear(GL_COLOR_BUFFER_BIT);
 
         /* Swap front and back buffers */
         glfwSwapBuffers(window);
