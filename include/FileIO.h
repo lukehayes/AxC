@@ -4,6 +4,9 @@
 #ifndef AX_FILEIO_H
 #define AX_FILEIO_H
 
+#include "Types.h"
+
+
 /**
  * Get the size of the file.
  *
@@ -32,14 +35,21 @@ static int GetFileSize(FILE* stream)
 char* ReadFile(const char* path, char* buffer)
 {
     FILE* fh = fopen(path, "r");
-    const int bufferSize = GetFileSize(fh);
+    const int bufferSize = GetFileSize(fh) + 1;
+    char data[bufferSize];
 
     buffer = malloc(sizeof(char) * bufferSize);
 
-    for(int i = 0; i<= bufferSize; i++)
+    char c;
+    int i = 0;
+
+    while( (c = fgetc(fh) ) != EOF )
     {
-        buffer[i] = fgetc(fh);
+        data[i] = c;
+        i++;
     }
+
+    memcpy(buffer, data, strlen(data + 1));
 
 
     fclose(fh);
