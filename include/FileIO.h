@@ -8,13 +8,13 @@
 
 
 /**
- * Get the size of the file.
+ * Get the size of the file from a supplied file handle.
  *
  * @param FILE* file stream.
  *
  * @return int
  */
-static int GetFileSize(FILE* stream)
+static int GetFileSizeFH(FILE* stream)
 {
     fseek(stream, 0, SEEK_END);
     int size = ftell(stream);
@@ -24,37 +24,47 @@ static int GetFileSize(FILE* stream)
 }
 
 /**
+ * Get the size of the file.
+ *
+ * @param FILE* file stream.
+ *
+ * @return int
+ */
+static int GetFileSize(const char* filename)
+{
+    FILE* fh = fopen(filename, "r");
+    fseek(fh, 0, SEEK_END);
+    int size = ftell(fh);
+    fseek(fh, 0, SEEK_SET);
+    fclose(fh);
+
+    return size;
+}
+
+/**
  * Read the contents of a file into a string. Allocates
  * memory, so must be freed.
  *
- * @param const char* path
+ * @param const char* filename
  * @param char* buffer
  *
  * @return char*
  */
-char* ReadFile(const char* path, char* buffer)
+void ReadFile(const char* filename, char* buffer)
 {
-    FILE* fh = fopen(path, "r");
-    const int bufferSize = GetFileSize(fh) + 1;
+    FILE* fh = fopen(filename, "r");
+    const int bufferSize = GetFileSizeFH(fh) + 1;
     char data[bufferSize];
-
     buffer = malloc(sizeof(char) * bufferSize);
 
     char c;
     int i = 0;
-
-    while( (c = fgetc(fh) ) != EOF )
+    while( (c = fgetc(fh)) != EOF )
     {
-        data[i] = c;
-        i++;
+        /* TODO: Implement buffer read.  <02-05-21, Me> */
     }
 
-    memcpy(buffer, data, strlen(data + 1));
-
-
     fclose(fh);
-
-    return buffer;
 }
 
 #endif
