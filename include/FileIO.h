@@ -46,23 +46,33 @@ static int GetFileSize(const char* filename)
  * memory, so must be freed.
  *
  * @param const char* filename
- * @param char* buffer
+ * @param char** buffer
  *
  * @return char*
  */
-void ReadFile(const char* filename, char* buffer)
+void ReadFile(const char* filename, char** buffer)
 {
     FILE* fh = fopen(filename, "r");
     const int bufferSize = GetFileSizeFH(fh) + 1;
     char data[bufferSize];
-    buffer = malloc(sizeof(char) * bufferSize);
+
+    *buffer = malloc(sizeof(char) * bufferSize);
+
+    if(buffer == NULL)
+    {
+        printf("%s: Memory failed to allocate on line %d \n", __FILE__, __LINE__);
+    }
 
     char c;
     int i = 0;
     while( (c = fgetc(fh)) != EOF )
     {
         /* TODO: Implement buffer read.  <02-05-21, Me> */
+        data[i] = c;
+        i++;
     }
+
+    memmove(*buffer, data, bufferSize);
 
     fclose(fh);
 }
