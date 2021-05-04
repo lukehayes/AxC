@@ -12,5 +12,11 @@ $(OBJ)/%.o: src/%.c
 all: $(OBJS)
 	$(CC) $(ENTRY) $^ $(BIN) $(CFLAGS) $(LDFLAGS)
 
+debug: $(OBJS)
+	$(CC) $(ENTRY) $^ $(BIN) $(CFLAGS) -g $(LDFLAGS)
+
+release: $(OBJS)
+	$(CC) $(ENTRY) $^ $(BIN) $(CFLAGS) -O3 $(LDFLAGS)
+
 clean:
 	rm -r bin/* obj/*.o
