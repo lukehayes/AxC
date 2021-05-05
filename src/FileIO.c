@@ -66,8 +66,6 @@ char* ReadFile(const char* filename)
 
     buffer[bufferSize] = '\0';
 
-    printf("buffer: %s \n", buffer);
-
     fclose(fh);
 
     return buffer;
