@@ -59,9 +59,6 @@ void ReadFile(const char* filename, char** buffer)
         printf("%s: Memory failed to allocate on line %d \n", __FILE__, __LINE__);
     }
 
-    extern int n;
-    printf("n: %i \n", n);
-
     char c;
     int i = 0;
     while( (c = fgetc(fh)) != EOF )
