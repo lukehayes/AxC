@@ -46,16 +46,13 @@ static int GetFileSize(const char* filename)
  *
  * @return char*
  */
-void ReadFile(const char* filename, char** buffer)
+char* ReadFile(const char* filename)
 {
     FILE* fh = fopen(filename, "r");
     const int bufferSize = GetFileSizeFH(fh) + 1;
-    char data[bufferSize];
+    char* buffer = malloc(sizeof(char) * bufferSize);
 
-    *buffer = malloc(sizeof(char) * bufferSize);
-
-    if(buffer == NULL)
-    {
+    if(buffer == NULL) {
         printf("%s: Memory failed to allocate on line %d \n", __FILE__, __LINE__);
     }
 
@@ -63,11 +60,11 @@ void ReadFile(const char* filename, char** buffer)
     int i = 0;
     while( (c = fgetc(fh)) != EOF )
     {
-        data[i] = c;
+        buffer[i] = c;
         i++;
     }
 
-    memmove(*buffer, data, bufferSize);
-
     fclose(fh);
+
+    return buffer;
 }

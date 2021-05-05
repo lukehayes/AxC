@@ -33,6 +33,6 @@ static int GetFileSize(const char* filename);
  *
  * @return char*
  */
-void ReadFile(const char* filename, char** buffer);
+char* ReadFile(const char* filename);
 
 #endif
