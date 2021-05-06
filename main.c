@@ -17,14 +17,14 @@ float verticies[] = {
 void GL()
 {
     glGenVertexArrays(1, &vao);
-    glBindVertexArray(GL_ARRAY_BUFFER);
+    glBindVertexArray(vao);
 
     glGenBuffers(1, &buffer);
     glBindBuffer(GL_ARRAY_BUFFER, buffer);
     glBufferData(GL_ARRAY_BUFFER, sizeof(verticies), verticies, GL_STATIC_DRAW );
 
-    glEnableVertexAttribArray(0);
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, (void*)0);
+    glEnableVertexAttribArray(0);
 
 }
 
@@ -55,23 +55,19 @@ int main(int argc, char *argv[])
     GL();
     CreateShader();
 
-    printf("shaderProgram: %i \n", shaderProgram);
-
-    printf("program: %i \n", program.program);
-
     while (!glfwWindowShouldClose(window))
     {
         /* Render here */
         glClear(GL_COLOR_BUFFER_BIT);
-
-        /* Swap front and back buffers */
-        glfwSwapBuffers(window);
 
         /* Poll for and process events */
         glfwPollEvents();
 
         glUseProgram(program.program);
         glDrawArrays(GL_TRIANGLES, 0, 3);
+
+        /* Swap front and back buffers */
+        glfwSwapBuffers(window);
     }
 
     glfwTerminate();
