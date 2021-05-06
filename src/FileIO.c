@@ -49,7 +49,7 @@ static int GetFileSize(const char* filename)
 char* ReadFile(const char* filename)
 {
     FILE* fh = fopen(filename, "r");
-    const int bufferSize = GetFileSizeFH(fh) + 1;
+    const int bufferSize = GetFileSizeFH(fh);
     char* buffer = malloc(sizeof(char) * bufferSize);
 
     if(buffer == NULL) {
@@ -65,8 +65,6 @@ char* ReadFile(const char* filename)
     }
 
     buffer[bufferSize] = '\0';
-
-    printf("buffer: %s \n", buffer);
 
     fclose(fh);
 
