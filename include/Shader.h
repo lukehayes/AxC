@@ -8,6 +8,8 @@
 GLuint shaderProgram;
 GLuint vertexObject;
 GLuint fragmentObject;
+char const* vertexSource;
+char const* fragmentSource;
 
 typedef struct Shader {
     GLuint program;
@@ -16,11 +18,11 @@ typedef struct Shader {
 
 Shader program;
 
-void CreateShader()
+void LoadShaderSource()
 {
     // VERTEX SHADER
     vertexObject = glCreateShader(GL_VERTEX_SHADER);
-    char const* vertexSource = ReadFile("assets/shaders/default-vsh.glsl");
+    vertexSource = ReadFile("assets/shaders/default-vsh.glsl");
 
     glShaderSource(vertexObject, 1, &vertexSource, NULL);
     glCompileShader(vertexObject);
@@ -35,7 +37,7 @@ void CreateShader()
 
     // FRAGMENT SHADER
     fragmentObject = glCreateShader(GL_FRAGMENT_SHADER);
-    char const* fragmentSource = ReadFile("assets/shaders/default-fsh.glsl");
+    fragmentSource = ReadFile("assets/shaders/default-fsh.glsl");
     glShaderSource(fragmentObject, 1, &fragmentSource, 0);
     glCompileShader(fragmentObject);
 
@@ -45,14 +47,21 @@ void CreateShader()
         glGetShaderInfoLog(fragmentObject, sizeof(InfoLog), NULL, InfoLog);
         fprintf(stderr, "Error compiling shader type %d: '%s'\n", GL_FRAGMENT_SHADER, InfoLog);
     }
+}
 
+void CreateShader()
+{
     // CREATE SHADER PROGRAM
     shaderProgram = glCreateProgram();
     program.program = shaderProgram;
 
+    LoadShaderSource();
+
     // ATTACH, LINK ETC
     glAttachShader(shaderProgram, vertexObject);
     glAttachShader(shaderProgram, fragmentObject);
+
+    GLint success;
 
     glLinkProgram(shaderProgram);
     glGetProgramiv(shaderProgram, GL_LINK_STATUS, &success);
