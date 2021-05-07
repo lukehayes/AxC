@@ -7,7 +7,10 @@
 
 typedef struct AxShader Shader;
 
-//Shader program;
+/**
+ * Creates an entire shader program with compiling, linking and validation.
+ */
+Shader* CreateShader();
 
 /**
  * Check for compilation errors during shader creation.
@@ -26,11 +29,6 @@ static void CheckCompileErrors(GLuint shaderObject, GLenum compilerState, GLenum
  * @return void
  */
 static void LoadShaderSource(const char* vPath, const char* fPath);
-
-/**
- * Creates an entire shader program with compiling, linking and validation.
- */
-Shader* CreateShader();
 
 /**
  * Call glUseProgram with a specific shader.
