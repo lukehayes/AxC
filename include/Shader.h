@@ -18,14 +18,14 @@ typedef struct AxShader Shader;
  *
  * @return void
  */
-void CheckCompileErrors(GLuint shaderObject, GLenum compilerState, GLenum shaderType);
+static void CheckCompileErrors(GLuint shaderObject, GLenum compilerState, GLenum shaderType);
 
 /**
  * Read in contents of a shader source file and compile it.
  *
  * @return void
  */
-void LoadShaderSource(const char* vPath, const char* fPath);
+static void LoadShaderSource(const char* vPath, const char* fPath);
 
 /**
  * Creates an entire shader program with compiling, linking and validation.
