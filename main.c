@@ -9,9 +9,10 @@
 GLuint vao;
 GLuint buffer;
 float verticies[] = {
-   -1.0f, -1.0f, 0.0f,
-   1.0f, -1.0f, 0.0f,
-   0.0f,  1.0f, 0.0f,
+    -0.5, 0.5, 0.0f,
+    -0.5, -0.5, 0.0f,
+    0.5, 0.5, 0.0f,
+    0.5, -0.5, 0.0f
 };
 
 void GL()
@@ -65,7 +66,7 @@ int main(int argc, char *argv[])
         glfwPollEvents();
 
         UseShader(shader);
-        glDrawArrays(GL_TRIANGLES, 0, 3);
+        glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
 
         /* Swap front and back buffers */
         glfwSwapBuffers(window);
