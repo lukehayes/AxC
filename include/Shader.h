@@ -46,4 +46,16 @@ void UseShader(const Shader* shader);
  */
 void ShaderSetFloat(const Shader* shader, const char* name, float value);
 
+/**
+ * Send a single float value into the shader.
+ *
+ * @param const Shader* shader
+ * @param const Shader* name
+ * @param float value1
+ * @param float value2
+ *
+ * @return void
+ */
+void ShaderSetFloat2(const Shader* shader, const char* name, float value1, float value2);
+
 #endif
