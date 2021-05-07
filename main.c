@@ -52,8 +52,9 @@ int main(int argc, char *argv[])
     glfwMakeContextCurrent(window);
     gladLoadGLLoader((GLADloadproc) glfwGetProcAddress);
 
+
     GL();
-    CreateShader();
+    Shader* shader = CreateShader();
 
     while (!glfwWindowShouldClose(window))
     {
@@ -63,7 +64,7 @@ int main(int argc, char *argv[])
         /* Poll for and process events */
         glfwPollEvents();
 
-        glUseProgram(program.program);
+        UseShader(shader);
         glDrawArrays(GL_TRIANGLES, 0, 3);
 
         /* Swap front and back buffers */

@@ -88,3 +88,8 @@ Shader* CreateShader()
 
     return &program;
 }
+
+void UseShader(const Shader* shader)
+{
+    glUseProgram(shader->program);
+}

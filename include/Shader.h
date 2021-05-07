@@ -32,4 +32,9 @@ void LoadShaderSource(const char* vPath, const char* fPath);
  */
 Shader* CreateShader();
 
+/**
+ * Call glUseProgram with a specific shader.
+ */
+void UseShader(const Shader* shader);
+
 #endif
