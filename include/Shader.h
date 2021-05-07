@@ -18,22 +18,27 @@ typedef struct Shader {
 
 Shader program;
 
+void CheckCompileErrors(GLuint shaderObject, GLenum compilerState, GLenum shaderType)
+{
+    GLint success;
+    glGetShaderiv(shaderObject, compilerState, &success);
+    if (!success) {
+        GLchar InfoLog[1024];
+        glGetShaderInfoLog(vertexObject, sizeof(InfoLog), NULL, InfoLog);
+        fprintf(stderr, "Error compiling shader type %d: '%s'\n", shaderType, InfoLog);
+    }
+
+}
+
 void LoadShaderSource()
 {
     // VERTEX SHADER
     vertexObject = glCreateShader(GL_VERTEX_SHADER);
     vertexSource = ReadFile("assets/shaders/default-vsh.glsl");
-
     glShaderSource(vertexObject, 1, &vertexSource, NULL);
     glCompileShader(vertexObject);
 
-    GLint success;
-    glGetShaderiv(vertexObject, GL_COMPILE_STATUS, &success);
-    if (!success) {
-        GLchar InfoLog[1024];
-        glGetShaderInfoLog(vertexObject, sizeof(InfoLog), NULL, InfoLog);
-        fprintf(stderr, "Error compiling shader type %d: '%s'\n", GL_VERTEX_SHADER, InfoLog);
-    }
+    CheckCompileErrors(vertexObject, GL_COMPILE_STATUS, GL_VERTEX_SHADER);
 
     // FRAGMENT SHADER
     fragmentObject = glCreateShader(GL_FRAGMENT_SHADER);
@@ -41,12 +46,7 @@ void LoadShaderSource()
     glShaderSource(fragmentObject, 1, &fragmentSource, 0);
     glCompileShader(fragmentObject);
 
-    glGetShaderiv(fragmentObject, GL_COMPILE_STATUS, &success);
-    if (!success) {
-        GLchar InfoLog[1024];
-        glGetShaderInfoLog(fragmentObject, sizeof(InfoLog), NULL, InfoLog);
-        fprintf(stderr, "Error compiling shader type %d: '%s'\n", GL_FRAGMENT_SHADER, InfoLog);
-    }
+    CheckCompileErrors(fragmentObject, GL_COMPILE_STATUS, GL_FRAGMENT_SHADER);
 }
 
 void CreateShader()
@@ -64,13 +64,8 @@ void CreateShader()
     GLint success;
 
     glLinkProgram(shaderProgram);
-    glGetProgramiv(shaderProgram, GL_LINK_STATUS, &success);
-    if (!success) {
-        GLchar ErrorLog[1024];
-        glGetProgramInfoLog(shaderProgram, sizeof(ErrorLog), NULL, ErrorLog);
-        fprintf(stderr, "Error linking shader program: '%s'\n", ErrorLog);
-    }
 
+    CheckCompileErrors(shaderProgram, GL_LINK_STATUS, 0);
     glValidateProgram(shaderProgram);
 
     free((char*)vertexSource);
