@@ -60,14 +60,14 @@ int main(int argc, char *argv[])
 
     while (!glfwWindowShouldClose(window))
     {
-        c+= 0.1;
+        c+= 0.001;
         /* Render here */
         glClear(GL_COLOR_BUFFER_BIT);
 
         /* Poll for and process events */
         glfwPollEvents();
 
-        ShaderSetFloat2(shader, "test", sin(c), cos(c));
+        ShaderUniform2f(shader, "test", sin(c), cos(c));
 
         UseShader(shader);
         glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
