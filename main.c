@@ -26,7 +26,6 @@ void GL()
 
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, (void*)0);
     glEnableVertexAttribArray(0);
-
 }
 
 int main(int argc, char *argv[])
@@ -57,13 +56,18 @@ int main(int argc, char *argv[])
     GL();
     Shader* shader = CreateShader();
 
+    float c = 0.0;
+
     while (!glfwWindowShouldClose(window))
     {
+        c+= 0.1;
         /* Render here */
         glClear(GL_COLOR_BUFFER_BIT);
 
         /* Poll for and process events */
         glfwPollEvents();
+
+        ShaderSetFloat2(shader, "test", sin(c), cos(c));
 
         UseShader(shader);
         glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
