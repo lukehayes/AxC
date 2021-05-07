@@ -4,7 +4,13 @@ static GLuint shaderProgram;
 static GLuint vertexObject;
 static GLuint fragmentObject;
 static char const* vertexSource;
-static char const* fragmentSource;
+static char const* fragmentSource; 
+
+typedef struct AxShader {
+    GLuint program;
+} Shader;
+
+Shader program;
 
 /**
  * Check for compilation errors during shader creation.
@@ -53,7 +59,7 @@ void LoadShaderSource(const char* vPath, const char* fPath)
 /**
  * Creates an entire shader program with compiling, linking and validation.
  */
-void CreateShader()
+Shader* CreateShader()
 {
     // CREATE SHADER PROGRAM
     shaderProgram = glCreateProgram();
@@ -79,4 +85,6 @@ void CreateShader()
 
     free((char*)vertexSource);
     free((char*)fragmentSource);
+
+    return &program;
 }

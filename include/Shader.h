@@ -5,12 +5,9 @@
 #include "Types.h"
 #include "FileIO.h"
 
-typedef struct Shader {
-    GLuint program;
+typedef struct AxShader Shader;
 
-} Shader;
-
-Shader program;
+//Shader program;
 
 /**
  * Check for compilation errors during shader creation.
@@ -33,6 +30,6 @@ void LoadShaderSource(const char* vPath, const char* fPath);
 /**
  * Creates an entire shader program with compiling, linking and validation.
  */
-void CreateShader();
+Shader* CreateShader();
 
 #endif
