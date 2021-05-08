@@ -3,6 +3,7 @@
 
 #include <glad/glad.h>
 #include "Types.h"
+#include "MathUtil.h"
 #include "FileIO.h"
 
 typedef struct AxShader Shader;
@@ -57,5 +58,16 @@ void ShaderUniform1f(const Shader* shader, const char* name, float value);
  * @return void
  */
 void ShaderUniform2f(const Shader* shader, const char* name, float value1, float value2);
+
+/**
+ * Send a Matrix4 uniform into the shader.
+ *
+ * @param const Shader* shader
+ * @param const Shader* name
+ * @param mat4  Matrix
+ *
+ * @return void
+ */
+void ShaderUniformMat4(const Shader* shader, const char* name, mat4 matrix);
 
 #endif

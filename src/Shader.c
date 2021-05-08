@@ -105,3 +105,9 @@ void ShaderUniform2f(const Shader* shader, const char* name, float value1, float
     GLuint location = glGetUniformLocation(shader->program, name);
     glUniform2f(location, value1, value2);
 }
+
+void ShaderUniformMat4(const Shader* shader, const char* name, mat4 matrix)
+{
+    GLuint location = glGetUniformLocation(shader->program, name);
+    glUniformMatrix4fv(location,1, GL_FALSE, matrix[0]);
+}
