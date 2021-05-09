@@ -15,6 +15,7 @@ extern "C" {
 #include <ctype.h>
 #include <math.h>
 #include <assert.h>
+#include <cglm/cglm.h>
 
 #define _inline 			static inline
 #define _local_persist 		static
@@ -58,6 +59,10 @@ typedef float 	 		f32;
 typedef double			f64;
 typedef char* 	        str;
 typedef const char* 	const_str;
+
+
+typedef vec2 	        V4;
+typedef mat4 	        M4;
 
 #define u16_max 		UINT16_MAX
 #define u32_max			UINT32_MAX
