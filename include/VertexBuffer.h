@@ -44,20 +44,6 @@ void DestroyVertexBuffer(Buffer* buffer)
 }
 
 /**
- * Create a Buffer struct.
- *
- * @return Buffer
- */
-Buffer CreateBufferObject() 
-{
-    Buffer buffer;
-    buffer.bind = &BindBuffer;
-    buffer.unbind = &UnBindBuffer;
-    buffer.destroy = &DestroyVertexBuffer;
-    return buffer;
-}
-
-/**
  * Create and bind a vertex buffer object.
  */
 void CreateVertexBuffer(Buffer* buffer)
@@ -82,5 +68,24 @@ void SetBufferData(s32 attributePosition, s32 vertexCount, const float verticies
     glEnableVertexAttribArray(attributePosition);
 }
 
+
+/**
+ * Create a Buffer struct.
+ *
+ * @return Buffer
+ */
+Buffer CreateBufferObject(s32 attributePosition, s32 vertexCount, const float verticies[12]) 
+{
+    Buffer buffer;
+    buffer.bind = &BindBuffer;
+    buffer.unbind = &UnBindBuffer;
+    buffer.destroy = &DestroyVertexBuffer;
+
+    CreateVertexBuffer(&buffer);
+
+    SetBufferData(attributePosition, vertexCount, verticies);
+
+    return buffer;
+}
 
 #endif
