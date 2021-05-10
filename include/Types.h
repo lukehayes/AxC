@@ -15,6 +15,7 @@ extern "C" {
 #include <ctype.h>
 #include <math.h>
 #include <assert.h>
+#include <glad/glad.h>
 #include <cglm/cglm.h>
 
 #define _inline 			static inline
