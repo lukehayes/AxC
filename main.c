@@ -4,6 +4,8 @@
 #include "Types.h"
 #include "FileIO.h"
 #include "Shader.h"
+#include "VertexArray.h"
+#include "VertexBuffer.h"
 
 
 GLuint vao;
@@ -17,15 +19,20 @@ float verticies[] = {
 
 void GL()
 {
-    glGenVertexArrays(1, &vao);
-    glBindVertexArray(vao);
+    /*glGenVertexArrays(1, &vao);*/
+    /*glBindVertexArray(vao);*/
 
-    glGenBuffers(1, &buffer);
-    glBindBuffer(GL_ARRAY_BUFFER, buffer);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(verticies), verticies, GL_STATIC_DRAW );
+    CreateVertexArray();
+    CreateVertexBuffer();
 
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, (void*)0);
-    glEnableVertexAttribArray(0);
+    SetBufferData(0,12,verticies);
+
+    /*glGenBuffers(1, &buffer);*/
+    /*glBindBuffer(GL_ARRAY_BUFFER, buffer);*/
+    /*glBufferData(GL_ARRAY_BUFFER, sizeof(verticies), verticies, GL_STATIC_DRAW );*/
+
+    /*glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, (void*)0);*/
+    /*glEnableVertexAttribArray(0);*/
 }
 
 int main(int argc, char *argv[])
@@ -56,11 +63,13 @@ int main(int argc, char *argv[])
     GL();
     Shader* shader = CreateShader();
 
+    printf("vertexArrayID: %i \n", vertexArrayID);
+
     float c = 0.0;
 
     while (!glfwWindowShouldClose(window))
     {
-        c+= 0.001;
+        c+= 0.01;
         /* Render here */
         glClear(GL_COLOR_BUFFER_BIT);
 
