@@ -7,33 +7,12 @@
 #include "VertexArray.h"
 #include "VertexBuffer.h"
 
-
-GLuint vao;
-GLuint buffer;
 float verticies[] = {
     -0.5, 0.5, 0.0f,
     -0.5, -0.5, 0.0f,
     0.5, 0.5, 0.0f,
     0.5, -0.5, 0.0f
 };
-
-void GL()
-{
-    /*glGenVertexArrays(1, &vao);*/
-    /*glBindVertexArray(vao);*/
-
-    CreateVertexArray();
-    CreateVertexBuffer();
-
-    SetBufferData(0,12,verticies);
-
-    /*glGenBuffers(1, &buffer);*/
-    /*glBindBuffer(GL_ARRAY_BUFFER, buffer);*/
-    /*glBufferData(GL_ARRAY_BUFFER, sizeof(verticies), verticies, GL_STATIC_DRAW );*/
-
-    /*glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, (void*)0);*/
-    /*glEnableVertexAttribArray(0);*/
-}
 
 int main(int argc, char *argv[])
 {
@@ -59,11 +38,11 @@ int main(int argc, char *argv[])
     glfwMakeContextCurrent(window);
     gladLoadGLLoader((GLADloadproc) glfwGetProcAddress);
 
-
-    GL();
     Shader* shader = CreateShader();
 
-    printf("vertexArrayID: %i \n", vertexArrayID);
+    CreateVertexArray();
+
+    Buffer buffer = CreateBufferObject(0,12,verticies);
 
     float c = 0.0;
 
