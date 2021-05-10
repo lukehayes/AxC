@@ -4,7 +4,7 @@ LDFLAGS = -lglfw3 -lX11 -ldl -lpthread -lm
 BIN     = -o bin/app
 ENTRY   = main.c
 OBJ     = obj
-OBJS    = $(OBJ)/glad.o $(OBJ)/FileIO.o $(OBJ)/Shader.o $(OBJ)/MathUtil.o
+OBJS    = $(OBJ)/glad.o $(OBJ)/FileIO.o $(OBJ)/Shader.o $(OBJ)/MathUtil.o $(OBJ)/VertexBuffer.o
 
 $(OBJ)/%.o: src/%.c
 	$(CC) $(CFLAGS) -c $^ -o $@
