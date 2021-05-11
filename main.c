@@ -6,7 +6,11 @@
 #include "Shader.h"
 #include "VertexArray.h"
 #include "VertexBuffer.h"
+#include "Window.h"
 
+
+GLuint vao;
+GLuint buffer;
 float verticies[] = {
     -0.5, 0.5, 0.0f,
     -0.5, -0.5, 0.0f,
@@ -14,29 +18,23 @@ float verticies[] = {
     0.5, -0.5, 0.0f
 };
 
+void GL()
+{
+    /*CreateVertexArray();*/
+
+    /*Buffer* buffer = CreateBufferObject();*/
+    /*buffer->bind(buffer);*/
+
+    /*CreateVertexBuffer(buffer);*/
+
+    /*SetBufferData(0,12,verticies);*/
+
+    /*free(buffer);*/
+}
+
 int main(int argc, char *argv[])
 {
-    GLFWwindow* window;
-
-    if(!glfwInit())
-    {
-        printf("GLFW Failed To Initialize \n");
-    }
-
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
-    glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-
-    window = glfwCreateWindow(640, 480, "Hello World", NULL, NULL);
-
-    if (!window)
-    {
-        glfwTerminate();
-        return -1;
-    }
-
-    glfwMakeContextCurrent(window);
-    gladLoadGLLoader((GLADloadproc) glfwGetProcAddress);
+    Window window = CreateWindow(800,600, "Ax Window");
 
     Shader* shader = CreateShader();
 
@@ -46,7 +44,7 @@ int main(int argc, char *argv[])
 
     float c = 0.0;
 
-    while (!glfwWindowShouldClose(window))
+    while (!glfwWindowShouldClose(window.handle))
     {
         c+= 0.01;
         /* Render here */
@@ -61,10 +59,11 @@ int main(int argc, char *argv[])
         glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
 
         /* Swap front and back buffers */
-        glfwSwapBuffers(window);
+        glfwSwapBuffers(window.handle);
     }
 
     glfwTerminate();
+    glfwDestroyWindow(window.handle);
 
     return 0;
 }
