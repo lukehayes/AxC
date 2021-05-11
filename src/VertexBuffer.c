@@ -3,11 +3,11 @@
 /**
  * Bind the currently bound buffer object.
  *
- * @param Buffer* buffer.
+ * @param VertexBuffer* buffer.
  *
  * @return void
  */
-void BindBuffer(Buffer* buffer)
+void BindVertexBuffer(VertexBuffer* buffer)
 {
     glBindBuffer(GL_ARRAY_BUFFER, buffer->id);
 }
@@ -15,7 +15,7 @@ void BindBuffer(Buffer* buffer)
 /**
  * Unbind the currently bound buffer object.
  */
-void UnBindBuffer()
+void UnBindVertexBuffer()
 {
     glBindBuffer(GL_ARRAY_BUFFER, 0);
 }
@@ -23,9 +23,9 @@ void UnBindBuffer()
 /**
  * Delete a vertex buffer from GPU memory.
  *
- * @return Buffer
+ * @return void
  */
-void DestroyVertexBuffer(Buffer* buffer)
+void DestroyVertexBuffer(VertexBuffer* buffer)
 {
     glDeleteBuffers(1, &buffer->id);
 }
@@ -33,7 +33,7 @@ void DestroyVertexBuffer(Buffer* buffer)
 /**
  * Create and bind a vertex buffer object.
  */
-void CreateVertexBuffer(Buffer* buffer)
+static void CreateVertexBufferObject(VertexBuffer* buffer)
 {
     glGenBuffers(1, &buffer->id);
     glBindBuffer(GL_ARRAY_BUFFER, buffer->id);
@@ -46,7 +46,7 @@ void CreateVertexBuffer(Buffer* buffer)
  * @param int vertexCount
  * @param float verticies[]
  *
- * @return Buffer*
+ * @return VertexBuffer*
  */
 void SetBufferData(s32 attributePosition, s32 vertexCount, const float verticies[12])
 {
@@ -57,18 +57,18 @@ void SetBufferData(s32 attributePosition, s32 vertexCount, const float verticies
 
 
 /**
- * Create a Buffer struct.
+ * Create a VertexBuffer struct.
  *
- * @return Buffer
+ * @return VertexBuffer
  */
-Buffer CreateBufferObject(s32 attributePosition, s32 vertexCount, const float verticies[12]) 
+VertexBuffer CreateVertexBuffer(s32 attributePosition, s32 vertexCount, const float verticies[12]) 
 {
-    Buffer buffer;
-    buffer.bind = &BindBuffer;
-    buffer.unbind = &UnBindBuffer;
+    VertexBuffer buffer;
+    buffer.bind = &BindVertexBuffer;
+    buffer.unbind = &UnBindVertexBuffer;
     buffer.destroy = &DestroyVertexBuffer;
 
-    CreateVertexBuffer(&buffer);
+    CreateVertexBufferObject(&buffer);
 
     SetBufferData(attributePosition, vertexCount, verticies);
 

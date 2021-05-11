@@ -6,39 +6,39 @@
 
 #include "Types.h"
 
-typedef struct Buffer {
+typedef struct VertexBuffer {
     GLuint id;
     void (*bind) ();
     void (*unbind) ();
     void (*destroy) ();
 
-} Buffer;
+} VertexBuffer;
 
 /**
  * Bind the currently bound buffer object.
  *
- * @param Buffer* buffer.
+ * @param VertexBuffer* buffer.
  *
  * @return void
  */
-void BindBuffer(Buffer* buffer);
+void BindVertexBuffer(VertexBuffer* buffer);
 
 /**
  * Unbind the currently bound buffer object.
  */
-void UnBindBuffer();
+void UnBindVertexBuffer();
 
 /**
  * Delete a vertex buffer from GPU memory.
  *
- * @return Buffer
+ * @return VertexBuffer
  */
-void DestroyVertexBuffer(Buffer* buffer);
+void DestroyVertexBuffer(VertexBuffer* buffer);
 
 /**
  * Create and bind a vertex buffer object.
  */
-void CreateVertexBuffer(Buffer* buffer);
+void CreateVertexBufferObject(VertexBuffer* buffer);
 
 /**
  * Added the vertex data to the bound buffer object.
@@ -47,15 +47,15 @@ void CreateVertexBuffer(Buffer* buffer);
  * @param int vertexCount
  * @param float verticies[]
  *
- * @return Buffer*
+ * @return VertexBuffer*
  */
 void SetBufferData(s32 attributePosition, s32 vertexCount, const float verticies[12]);
 
 /**
- * Create a Buffer struct.
+ * Create a VertexBuffer struct.
  *
- * @return Buffer
+ * @return VertexBuffer
  */
-Buffer CreateBufferObject(s32 attributePosition, s32 vertexCount, const float verticies[12]);
+VertexBuffer CreateVertexBuffer(s32 attributePosition, s32 vertexCount, const float verticies[12]);
 
 #endif
