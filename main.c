@@ -7,6 +7,7 @@
 #include "VertexArray.h"
 #include "VertexBuffer.h"
 #include "Window.h"
+#include "Engine.h"
 
 float verticies[] = {
     -0.5, 0.5, 0.0f,
@@ -17,7 +18,8 @@ float verticies[] = {
 
 int main(int argc, char *argv[])
 {
-    Window window = CreateWindow(800,600, "Ax Window");
+    Engine engine = CreateEngine();
+    Window window = CreateWindow(engine.width,engine.height, "Ax Window");
 
     Shader* shader = CreateShader();
 
@@ -27,11 +29,25 @@ int main(int argc, char *argv[])
 
     float c = 0.0;
 
+    f32 delta = 0.0;
+    f32 now = 0.0;
+    f32 previousTime = glfwGetTime();
+    f32 FPS = 60.0;
+
     while (!glfwWindowShouldClose(window.handle))
     {
         c+= 0.01;
         /* Render here */
         glClear(GL_COLOR_BUFFER_BIT);
+
+        now = glfwGetTime();
+        delta = now - previousTime;
+        previousTime = now;
+
+        printf("delta: %f \n", delta);
+
+
+
 
 
         /* Poll for and process events */
