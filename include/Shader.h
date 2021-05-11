@@ -1,7 +1,6 @@
 #ifndef AX_SHADER_H
 #define AX_SHADER_H
 
-#include <glad/glad.h>
 #include "Types.h"
 #include "MathUtil.h"
 #include "FileIO.h"
