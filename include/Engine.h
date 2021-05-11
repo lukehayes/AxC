@@ -11,9 +11,6 @@
 typedef struct Engine {
     s16 width;
     s16 height;
-    
-    f64 (*GetDetlaTime)();
-
 } Engine;
 
 /**
