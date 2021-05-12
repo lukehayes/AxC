@@ -33,7 +33,7 @@ void DestroyVertexBuffer(VertexBuffer* buffer)
 /**
  * Create and bind a vertex buffer object.
  */
-static void CreateVertexBufferObject(VertexBuffer* buffer)
+void CreateVertexBufferObject(VertexBuffer* buffer)
 {
     glGenBuffers(1, &buffer->id);
     glBindBuffer(GL_ARRAY_BUFFER, buffer->id);
