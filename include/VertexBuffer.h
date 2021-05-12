@@ -45,17 +45,18 @@ void CreateVertexBufferObject(VertexBuffer* buffer);
  *
  * @param int attributePosition
  * @param int vertexCount
+ * @param u8  compontentCount
  * @param float verticies[]
  *
  * @return VertexBuffer*
  */
-void SetBufferData(s32 attributePosition, s32 vertexCount, const float verticies[12]);
+void SetBufferData(s32 attributePosition, u8 componentCount, s32 vertexCount, const float verticies[12]);
 
 /**
  * Create a VertexBuffer struct.
  *
  * @return VertexBuffer
  */
-VertexBuffer CreateVertexBuffer(s32 attributePosition, s32 vertexCount, const float verticies[12]);
+VertexBuffer CreateVertexBuffer(s32 attributePosition, u8 componentCount, s32 vertexCount, const float verticies[12]);
 
 #endif

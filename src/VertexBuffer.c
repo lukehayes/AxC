@@ -48,10 +48,10 @@ void CreateVertexBufferObject(VertexBuffer* buffer)
  *
  * @return VertexBuffer*
  */
-void SetBufferData(s32 attributePosition, s32 vertexCount, const float verticies[12])
+void SetBufferData(s32 attributePosition, u8 componentCount, s32 vertexCount, const float verticies[12])
 {
     glBufferData(GL_ARRAY_BUFFER, sizeof(float) * vertexCount, verticies, GL_STATIC_DRAW );
-    glVertexAttribPointer(attributePosition, 3, GL_FLOAT, GL_FALSE, 0, (void*)0);
+    glVertexAttribPointer(attributePosition, componentCount, GL_FLOAT, GL_FALSE, 0, (void*)0);
     glEnableVertexAttribArray(attributePosition);
 }
 
@@ -61,7 +61,7 @@ void SetBufferData(s32 attributePosition, s32 vertexCount, const float verticies
  *
  * @return VertexBuffer
  */
-VertexBuffer CreateVertexBuffer(s32 attributePosition, s32 vertexCount, const float verticies[12]) 
+VertexBuffer CreateVertexBuffer(s32 attributePosition, u8 componentCount, s32 vertexCount, const float verticies[12]) 
 {
     VertexBuffer buffer;
     buffer.bind = &BindVertexBuffer;
@@ -70,7 +70,7 @@ VertexBuffer CreateVertexBuffer(s32 attributePosition, s32 vertexCount, const fl
 
     CreateVertexBufferObject(&buffer);
 
-    SetBufferData(attributePosition, vertexCount, verticies);
+    SetBufferData(attributePosition, componentCount, vertexCount, verticies);
 
     return buffer;
 }
