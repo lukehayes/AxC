@@ -18,6 +18,19 @@ float verticies[] = {
 
 extern Engine engine;
 
+
+// MAIN UPDATE AND RENDER FUNCTIONS
+void update(float dt)
+{
+    printf("dt: %f \n", dt);
+}
+
+void render()
+{
+    printf("Rendering \n");
+}
+
+
 int main(int argc, char *argv[])
 {
     Window window = CreateWindow(engine.width,engine.height, engine.title);
@@ -45,8 +58,9 @@ int main(int argc, char *argv[])
         delta = now - previousTime;
         previousTime = now;
 
-        /*printf("delta: %f \n", delta);*/
+        update(delta);
 
+        render();
 
         /* Poll for and process events */
         glfwPollEvents();
