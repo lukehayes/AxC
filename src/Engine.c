@@ -12,8 +12,15 @@ Engine CreateEngine()
     return engine;
 }
 
+static void update(float dt)
+{
+    printf("Update Engine \n");
+}
+
 Engine engine = {
     .width  = 800, 
     .height = 600,
-    .title = "Ax Window"
+    .title = "Ax Window",
+    .update = &update
 };
+

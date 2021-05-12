@@ -8,11 +8,12 @@
 
 #include "Types.h"
 
-
 typedef struct Engine {
     s16 width;
     s16 height;
     const_str title;
+
+    void (*update)(float dt);
     
 } Engine;
 
@@ -21,6 +22,5 @@ typedef struct Engine {
  */
 Engine CreateEngine();
 
-extern Engine engine;
 
 #endif

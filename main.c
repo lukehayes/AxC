@@ -18,11 +18,11 @@ float verticies[] = {
 
 extern Engine engine;
 
-
 // MAIN UPDATE AND RENDER FUNCTIONS
 void update(float dt)
 {
     printf("dt: %f \n", dt);
+    engine.update(dt);
 }
 
 void render()
