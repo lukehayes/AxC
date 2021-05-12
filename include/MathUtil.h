@@ -5,27 +5,20 @@
  * and aims to be written in such a way that its inner
  * library can be swapped out for another one easily.
  */
-#ifndef AX_MATH_H
-#define AX_MATH_H
+#ifndef AX_MATHUTIL_H
+#define AX_MATHUTIL_H
 
 #include <cglm/cglm.h>
 
 /**
  * Create and return a projection matrix.
  */
-mat4* PerspectiveProjection(mat4* matrix)
-{
-    glm_perspective(45.0f, 800.0f / 600.0f, 0.1f, 100.0f, *matrix);
-    return matrix;
+mat4* PerspectiveProjection(mat4* matrix);
 
-}
 /**
  * Create and return a orthographic matrix.
  */
-void OrthographicProjection()
-{
-    // TODO Implement orthographic projection.
-}
+void OrthographicProjection();
 
 
 #endif
