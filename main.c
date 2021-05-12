@@ -18,6 +18,8 @@ float verticies[] = {
 
 extern Engine engine;
 
+#define MAX 1000
+
 // MAIN UPDATE AND RENDER FUNCTIONS
 void update(float dt)
 {
@@ -56,10 +58,14 @@ int main(int argc, char *argv[])
 
     mat4 view;
     glm_mat4_identity(view);
-    vec3 eye = {0,0,3.0f};
-    vec3 center = {0,0,0};
-    vec3 up = {0,1.0f,0};
-    glm_lookat(eye, center,up,view);
+
+    vec3 cameraTarget = {0,0,3.0f};
+    vec3 cameraDir = {0,0,0};
+    vec3 cameraUp = {0,1.0f,0};
+    glm_lookat(cameraTarget,
+            cameraDir,
+            cameraUp,
+            view);
 
 
 
@@ -68,28 +74,37 @@ int main(int argc, char *argv[])
 
     glm_translate(model, position);
 
-    vec3 positions[10] = {
-        {0,0,-10.0f},
-        {3,0,-10.0f},
-        {3,3,-10.0f},
-        {1,3,-10.0f},
-        {10,3,-10.0f},
-        {-10,3,-10.0f},
-        {-3,23,-20.0f},
-        {-29,-13,-20.0f},
-        {12,-16,-20.0f},
-        {-20,33,-4.0f}
-    };
+    vec3 positions[MAX];
+
+    for (int i = 0; i < MAX; i++) 
+    {
+        vec3 v = {
+            rand() % 100 - 50,
+            rand() % 100 - 50,
+            rand() % 100 - 50
+        };
+
+        memcpy(positions[i], v, sizeof(v));
+    }
 
     while (!glfwWindowShouldClose(window.handle))
     {
-        c+= 0.001;
+        c+= 0.0001;
         /* Render here */
         glClear(GL_COLOR_BUFFER_BIT);
         glClearColor(0.8f, 0.8f, 0.8f, 1.0f);
 
         now = glfwGetTime();
         previousTime = now;
+
+        cameraTarget[0] = cos(c) * 10.0f;
+        cameraTarget[1] = -cos(c) * 10.0f;
+        cameraTarget[2] = sin(c) * 10.0f;
+
+        glm_lookat(cameraTarget,
+                cameraDir,
+                cameraUp,
+                view);
 
         /* Poll for and process events */
         glfwPollEvents();
@@ -102,7 +117,7 @@ int main(int argc, char *argv[])
         ShaderUniformMat4(shader, "view", view);
         ShaderUniformMat4(shader, "model", model);
 
-        for (int i = 0; i < 10; ++i) {
+        for (int i = 0; i < MAX; ++i) {
             mat4 model;
             glm_mat4_identity(model);
 
