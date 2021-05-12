@@ -39,7 +39,7 @@ int main(int argc, char *argv[])
 
     VertexArray vao = CreateVertexArray();
 
-    VertexBuffer buffer = CreateVertexBuffer(0,12,verticies);
+    VertexBuffer buffer = CreateVertexBuffer(0,3, 12,verticies);
 
     float c = 0.0;
 
@@ -55,12 +55,9 @@ int main(int argc, char *argv[])
         glClear(GL_COLOR_BUFFER_BIT);
 
         now = glfwGetTime();
-        delta = now - previousTime;
+        gamestate.deltaTime = now - previousTime;
         previousTime = now;
 
-        update(delta);
-
-        render();
 
         /* Poll for and process events */
         glfwPollEvents();
