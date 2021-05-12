@@ -11,3 +11,9 @@ Engine CreateEngine()
     
     return engine;
 }
+
+Engine engine = {
+    .width  = 800, 
+    .height = 600,
+    .title = "Ax Window"
+};

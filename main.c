@@ -16,10 +16,11 @@ float verticies[] = {
     0.5, -0.5, 0.0f
 };
 
+extern Engine engine;
+
 int main(int argc, char *argv[])
 {
-    Engine engine = CreateEngine();
-    Window window = CreateWindow(engine.width,engine.height, "Ax Window");
+    Window window = CreateWindow(engine.width,engine.height, engine.title);
 
     Shader* shader = CreateShader();
 
@@ -44,10 +45,7 @@ int main(int argc, char *argv[])
         delta = now - previousTime;
         previousTime = now;
 
-        printf("delta: %f \n", delta);
-
-
-
+        /*printf("delta: %f \n", delta);*/
 
 
         /* Poll for and process events */

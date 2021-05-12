@@ -8,9 +8,12 @@
 
 #include "Types.h"
 
+
 typedef struct Engine {
     s16 width;
     s16 height;
+    const_str title;
+    
 } Engine;
 
 /**
@@ -18,5 +21,6 @@ typedef struct Engine {
  */
 Engine CreateEngine();
 
+extern Engine engine;
 
 #endif
