@@ -18,6 +18,9 @@ float verticies[] = {
 
 extern Engine engine;
 
+float xPos = 0.0f;
+float yPos = 0.0f;
+
 #define MAX 1000
 
 // MAIN UPDATE AND RENDER FUNCTIONS
@@ -30,6 +33,19 @@ void update(float dt)
 void render()
 {
     printf("Rendering \n");
+}
+
+void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods)
+{
+    if (key == GLFW_KEY_W && action == GLFW_PRESS)
+    {
+        xPos += 1;
+    }
+
+    if (key == GLFW_KEY_S && action == GLFW_PRESS)
+    {
+        xPos -= 1;
+    }
 }
 
 
@@ -71,8 +87,6 @@ int main(int argc, char *argv[])
             cameraUp,
             view);
 
-
-
     mat4 model;
     glm_mat4_identity(model);
 
@@ -91,6 +105,8 @@ int main(int argc, char *argv[])
         memcpy(positions[i], v, sizeof(v));
     }
 
+    glfwSetKeyCallback(window.handle, key_callback);
+
     while (!glfwWindowShouldClose(window.handle))
     {
         c+= 0.01;
@@ -101,12 +117,19 @@ int main(int argc, char *argv[])
         now = glfwGetTime();
         previousTime = now;
 
-        cameraPosition[0] = cos(c)  * 10.0f;
-        cameraPosition[1] = -cos(c) * 10.0f;
-        cameraPosition[2] = sin(c)  * 10.0f;
+    vec3 cameraPosition = {0,0,3.0f};
+    vec3 cameraDir = {0,0,0};
+    
+    glm_vec3_add(cameraPosition, cameraDir, cameraCombined);
+
+        /*cameraPosition[0] = cos(c)  * 10.0f;*/
+        /*cameraPosition[1] = -cos(c) * 10.0f;*/
+        /*cameraPosition[2] = sin(c)  * 10.0f;*/
+
+        cameraPosition[2] = cameraPosition[2] + xPos;
 
         glm_lookat(cameraPosition,
-                cameraDir,
+                cameraCombined,
                 cameraUp,
                 view);
 
