@@ -59,10 +59,10 @@ int main(int argc, char *argv[])
     mat4 view;
     glm_mat4_identity(view);
 
-    vec3 cameraTarget = {0,0,3.0f};
+    vec3 cameraPosition = {0,0,3.0f};
     vec3 cameraDir = {0,0,0};
     vec3 cameraUp = {0,1.0f,0};
-    glm_lookat(cameraTarget,
+    glm_lookat(cameraPosition,
             cameraDir,
             cameraUp,
             view);
@@ -89,7 +89,7 @@ int main(int argc, char *argv[])
 
     while (!glfwWindowShouldClose(window.handle))
     {
-        c+= 0.0001;
+        c+= 0.01;
         /* Render here */
         glClear(GL_COLOR_BUFFER_BIT);
         glClearColor(0.8f, 0.8f, 0.8f, 1.0f);
@@ -97,11 +97,11 @@ int main(int argc, char *argv[])
         now = glfwGetTime();
         previousTime = now;
 
-        cameraTarget[0] = cos(c) * 10.0f;
-        cameraTarget[1] = -cos(c) * 10.0f;
-        cameraTarget[2] = sin(c) * 10.0f;
+        cameraPosition[0] = cos(c)  * 10.0f;
+        cameraPosition[1] = -cos(c) * 10.0f;
+        cameraPosition[2] = sin(c)  * 10.0f;
 
-        glm_lookat(cameraTarget,
+        glm_lookat(cameraPosition,
                 cameraDir,
                 cameraUp,
                 view);
@@ -110,8 +110,6 @@ int main(int argc, char *argv[])
         glfwPollEvents();
 
         glm_rotate(model, glm_rad(sin(c)), (vec3){0,0,1});
-
-        ShaderUniform2f(shader, "test", sin(c), cos(c));
 
         ShaderUniformMat4(shader, "projection", projection);
         ShaderUniformMat4(shader, "view", view);
