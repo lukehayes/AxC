@@ -62,8 +62,12 @@ int main(int argc, char *argv[])
     vec3 cameraPosition = {0,0,3.0f};
     vec3 cameraDir = {0,0,0};
     vec3 cameraUp = {0,1.0f,0};
+    
+    vec3 cameraCombined;
+    glm_vec3_add(cameraPosition, cameraDir, cameraCombined);
+
     glm_lookat(cameraPosition,
-            cameraDir,
+            cameraCombined,
             cameraUp,
             view);
 
