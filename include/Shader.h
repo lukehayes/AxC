@@ -47,7 +47,7 @@ void UseShader(const Shader* shader);
 void ShaderUniform1f(const Shader* shader, const char* name, float value);
 
 /**
- * Send a single float value into the shader.
+ * Send two float values into the shader.
  *
  * @param const Shader* shader
  * @param const Shader* name
@@ -57,6 +57,19 @@ void ShaderUniform1f(const Shader* shader, const char* name, float value);
  * @return void
  */
 void ShaderUniform2f(const Shader* shader, const char* name, float value1, float value2);
+
+/**
+ * Send a three float values into the shader.
+ *
+ * @param const Shader* shader
+ * @param const Shader* name
+ * @param float value1
+ * @param float value2
+ * @param float value3
+ *
+ * @return void
+ */
+void ShaderUniform3f(const Shader* shader, const char* name, vec3 value);
 
 /**
  * Send a Matrix4 uniform into the shader.

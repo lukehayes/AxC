@@ -1,4 +1,5 @@
 #include "Shader.h"
+#include "Types.h"
 
 static GLuint shaderProgram;
 static GLuint vertexObject;
@@ -104,6 +105,12 @@ void ShaderUniform2f(const Shader* shader, const char* name, float value1, float
 {
     GLuint location = glGetUniformLocation(shader->program, name);
     glUniform2f(location, value1, value2);
+}
+
+void ShaderUniform3f(const Shader* shader, const char* name, vec3 value)
+{
+    GLuint location = glGetUniformLocation(shader->program, name);
+    glUniform3f(location, value[0], value[1], value[2]);
 }
 
 void ShaderUniformMat4(const Shader* shader, const char* name, mat4 matrix)
