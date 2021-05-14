@@ -9,6 +9,7 @@
 #include "Window.h"
 #include "Engine.h"
 
+
 float verticies[] = {
     -0.5, 0.5, 0.0f,
     -0.5, -0.5, 0.0f,
@@ -60,6 +61,7 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
 
 void mouse_callback(GLFWwindow* window, double xPos, double yPos)
 {
+    printf("@ \n");
     float xOffset = xPos - lastX;
     float yOffset = lastY - yPos; // Y reversed, co-ordinates from bottom to top.
     lastX = xPos;
@@ -82,7 +84,11 @@ void mouse_callback(GLFWwindow* window, double xPos, double yPos)
     front[1] = sin(glm_rad(pitch));
     front[2] = sin(glm_rad(yaw)) * cos(glm_rad(pitch));
 
-    memset(cameraDir, glm_vec3_norm(front), sizeof(vec3));
+    cameraDir[0] = front[0];
+    cameraDir[1] = front[1];
+    cameraDir[2] = front[2];
+
+    /*memset(cameraDir, glm_vec3_norm(front), sizeof(vec3));*/
     /*cameraDir = glm_vec3_norm(front);*/
 }
 
@@ -117,10 +123,10 @@ int main(int argc, char *argv[])
     /*vec3 cameraCombined;*/
     /*glm_vec3_add(cameraPosition, cameraDir, cameraCombined);*/
 
-    glm_lookat(cameraPosition,
-            cameraDir,
-            cameraUp,
-            view);
+    /*glm_lookat(cameraPosition,*/
+            /*cameraDir,*/
+            /*cameraUp,*/
+            /*view);*/
 
     mat4 model;
     glm_mat4_identity(model);
@@ -159,12 +165,12 @@ int main(int argc, char *argv[])
 
         /*cameraPosition[0] = cameraPosition[0] + xPos;*/
 
-        printf("yaw: %f \n", yaw);
-        printf("pitch: %f \n", pitch);
+        /*printf("yaw: %f \n", yaw);*/
+        /*printf("pitch: %f \n", pitch);*/
 
-        cameraPosition[0] = xPos;
-        cameraPosition[1] = sin(glm_rad(pitch));
-        cameraPosition[2] = sin(glm_rad(pitch))  * cos(glm_rad(yaw));
+        /*cameraPosition[0] = xPos;*/
+        /*cameraPosition[1] = sin(glm_rad(pitch));*/
+        /*cameraPosition[2] = sin(glm_rad(pitch))  * cos(glm_rad(yaw));*/
 
         glm_lookat(cameraPosition,
                 cameraDir,
@@ -179,6 +185,8 @@ int main(int argc, char *argv[])
         ShaderUniformMat4(shader, "projection", projection);
         ShaderUniformMat4(shader, "view", view);
         ShaderUniformMat4(shader, "model", model);
+
+        glm_mat4_print(model, stderr);
 
         for (int i = 0; i < MAX; ++i) {
             mat4 model;
