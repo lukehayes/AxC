@@ -9,8 +9,13 @@ typedef struct AxShader Shader;
 
 /**
  * Creates an entire shader program with compiling, linking and validation.
+ *
+ * @param const Shader* vsh
+ * @param const Shader* vsh
+ *
+ * @return Shader*
  */
-Shader* CreateShader();
+Shader* CreateShader(const_str vsh, const_str fsh);
 
 /**
  * Check for compilation errors during shader creation.

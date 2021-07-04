@@ -60,16 +60,13 @@ void LoadShaderSource(const char* vPath, const char* fPath)
 /**
  * Creates an entire shader program with compiling, linking and validation.
  */
-Shader* CreateShader()
+Shader* CreateShader(const_str vsh, const_str fsh)
 {
     // CREATE SHADER PROGRAM
     shaderProgram = glCreateProgram();
     program.program = shaderProgram;
 
-    LoadShaderSource(
-        "assets/shaders/default-vsh.glsl",
-        "assets/shaders/default-fsh.glsl"
-    );
+    LoadShaderSource(vsh, fsh);
 
     // ATTACH, LINK ETC
     glAttachShader(shaderProgram, vertexObject);
