@@ -19,5 +19,8 @@ debug: $(OBJS)
 release: $(OBJS)
 	$(CC) $(ENTRY) $^ $(BIN) $(CFLAGS) -O3 $(LDFLAGS)
 
+preprocess: $(OBJS)
+	$(CC) $(ENTRY) -E $^ $(BIN) $(CFLAGS) $(LDFLAGS)
+
 clean:
 	rm -r bin/* obj/*.o src/*.o
