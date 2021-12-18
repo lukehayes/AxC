@@ -76,6 +76,9 @@ int main(int argc, char *argv[])
         memcpy(positions[i], v, sizeof(v));
     }
 
+    mat4 model;
+    glm_mat4_identity(model);
+
     while (!glfwWindowShouldClose(window.handle))
     {
         c+= 0.01;
