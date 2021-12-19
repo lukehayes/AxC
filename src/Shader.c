@@ -64,7 +64,10 @@ Shader* CreateShader(const_str vsh, const_str fsh)
 {
     // CREATE SHADER PROGRAM
     shaderProgram = glCreateProgram();
-    program.program = shaderProgram;
+
+    Shader* program = malloc(sizeof(Shader));
+
+    program->program = shaderProgram;
 
     LoadShaderSource(vsh, fsh);
 
@@ -74,17 +77,22 @@ Shader* CreateShader(const_str vsh, const_str fsh)
 
     GLint success;
 
-    glLinkProgram(shaderProgram);
+    glLinkProgram(program);
 
     printf("Shader Linking Error. \n");
-    CheckCompileErrors(shaderProgram, GL_LINK_STATUS, 0);
+    CheckCompileErrors(program, GL_LINK_STATUS, 0);
 
-    glValidateProgram(shaderProgram);
+    glValidateProgram(program);
 
     free((char*)vertexSource);
     free((char*)fragmentSource);
 
-    return &program;
+    return program;
+}
+
+void DestroyShader(Shader* shader)
+{
+    free(shader);
 }
 
 void UseShader(const Shader* shader)

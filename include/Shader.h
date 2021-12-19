@@ -18,6 +18,15 @@ typedef struct AxShader Shader;
 Shader* CreateShader(const_str vsh, const_str fsh);
 
 /**
+ * Destory the shader allocated in memory.
+ *
+ * @param Shader* shader
+ *
+ * @return void
+ */
+void DestroyShader(Shader* shader);
+
+/**
  * Check for compilation errors during shader creation.
  *
  * @param GLuint shaderObject
