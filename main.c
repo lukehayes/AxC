@@ -109,6 +109,7 @@ int main(int argc, char *argv[])
         glfwSwapBuffers(window.handle);
     }
 
+    DestroyShader(shader);
     glfwDestroyWindow(window.handle);
     glfwTerminate();
 
