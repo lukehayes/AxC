@@ -44,6 +44,7 @@ void LoadShaderSource(const char* vPath, const char* fPath)
     vertexObject = glCreateShader(GL_VERTEX_SHADER);
     const char* vertexSource = ReadFile(vPath);
     glShaderSource(vertexObject, 1, &vertexSource, NULL);
+
     glCompileShader(vertexObject);
 
     CheckCompileErrors(vertexObject, GL_COMPILE_STATUS, GL_VERTEX_SHADER);
@@ -66,23 +67,30 @@ Shader* CreateShader(const_str vsh, const_str fsh)
     shaderProgram = glCreateProgram();
 
     Shader* program = malloc(sizeof(Shader));
+    
 
     program->program = shaderProgram;
 
+    /*printf("Shader program: %s \n", vsh);*/
+
     LoadShaderSource(vsh, fsh);
 
+    printf("Shader program: %s \n", vsh);
+
+
     // ATTACH, LINK ETC
-    glAttachShader(shaderProgram, vertexObject);
-    glAttachShader(shaderProgram, fragmentObject);
+    glAttachShader(program->program, vertexObject);
+    glAttachShader(program->program, fragmentObject);
 
     GLint success;
 
-    glLinkProgram(program);
+    glLinkProgram(program->program);
 
     printf("Shader Linking Error. \n");
-    CheckCompileErrors(program, GL_LINK_STATUS, 0);
+    CheckCompileErrors(program->program, GL_LINK_STATUS, 0);
 
-    glValidateProgram(program);
+    printf("Shader Validating. \n");
+    glValidateProgram(program->program);
 
     free((char*)vertexSource);
     free((char*)fragmentSource);
