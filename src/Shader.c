@@ -42,7 +42,7 @@ void LoadShaderSource(const char* vPath, const char* fPath)
 {
     // VERTEX SHADER
     vertexObject = glCreateShader(GL_VERTEX_SHADER);
-    vertexSource = ReadFile(vPath);
+    const char* vertexSource = ReadFile(vPath);
     glShaderSource(vertexObject, 1, &vertexSource, NULL);
     glCompileShader(vertexObject);
 
@@ -50,7 +50,7 @@ void LoadShaderSource(const char* vPath, const char* fPath)
 
     // FRAGMENT SHADER
     fragmentObject = glCreateShader(GL_FRAGMENT_SHADER);
-    fragmentSource = ReadFile(fPath);
+    const char* fragmentSource = ReadFile(fPath);
     glShaderSource(fragmentObject, 1, &fragmentSource, 0);
     glCompileShader(fragmentObject);
 
