@@ -1,11 +1,11 @@
 #include "Shader.h"
 #include "Types.h"
 
-static GLuint shaderProgram;
-static GLuint vertexObject;
-static GLuint fragmentObject;
-static char const* vertexSource;
-static char const* fragmentSource; 
+GLuint shaderProgram;
+GLuint vertexObject;
+GLuint fragmentObject;
+char const* vertexSource;
+char const* fragmentSource; 
 Shader program;
 
 typedef struct AxShader {
@@ -67,16 +67,12 @@ Shader* CreateShader(const_str vsh, const_str fsh)
     shaderProgram = glCreateProgram();
 
     Shader* program = malloc(sizeof(Shader));
-    
 
     program->program = shaderProgram;
 
     /*printf("Shader program: %s \n", vsh);*/
 
     LoadShaderSource(vsh, fsh);
-
-    printf("Shader program: %s \n", vsh);
-
 
     // ATTACH, LINK ETC
     glAttachShader(program->program, vertexObject);
@@ -86,7 +82,7 @@ Shader* CreateShader(const_str vsh, const_str fsh)
 
     glLinkProgram(program->program);
 
-    printf("Shader Linking Error. \n");
+    /*printf("Shader Linking Error. \n");*/
     CheckCompileErrors(program->program, GL_LINK_STATUS, 0);
 
     printf("Shader Validating. \n");

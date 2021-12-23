@@ -10,18 +10,18 @@
 #include "Engine.h"
 
 
-/*float verticies[] = {*/
-    /*-0.1, 0.5, 0.0f,*/
-    /*-0.5, -0.5, 0.0f,*/
-    /*0.5, 0.5, 0.0f,*/
-    /*0.5, -0.5, 0.0f*/
-/*};*/
-
 float verticies[] = {
-   -1.0f, -1.0f, 0.0f,
-   1.0f, -1.0f, 0.0f,
-   0.0f,  1.0f, 0.0f
+    -0.1, 0.5, 0.0f,
+    -0.5, -0.5, 0.0f,
+    0.5, 0.5, 0.0f,
+    0.5, -0.5, 0.0f
 };
+
+/*float verticies[] = {*/
+   /*-1.0f, -1.0f, 0.0f,*/
+   /*1.0f, -1.0f, 0.0f,*/
+   /*0.0f,  1.0f, 0.0f*/
+/*};*/
 
 extern Engine engine;
 #define MAX 100
@@ -79,6 +79,17 @@ int main(int argc, char *argv[])
     mat4 model;
     glm_mat4_identity(model);
 
+    mat4 projection;
+    glm_perspective_default((800.0f/600.0f), projection);
+
+    vec3 eye = {0,0,-3.0f};
+
+    mat4 view;
+    glm_mat4_identity(view);
+
+    glm_mat4_print(model, stderr);
+    glm_mat4_print(model, stdout);
+
     while (!glfwWindowShouldClose(window.handle))
     {
         c+= 0.01;
@@ -89,6 +100,20 @@ int main(int argc, char *argv[])
         now = glfwGetTime();
         previousTime = now;
 
+        /*model[0][0] = cos(c) * 100.0f;*/
+        /*model[1][1] = sin(c) * 100.0f;*/
+
+
+    glm_lookat(
+            eye,
+            (vec3){0,0,0},
+            (vec3){0,1.0,0},
+            view
+            );
+
+
+        eye[2] = sin(c) * 100;
+
         /* Poll for and process events */
         glfwPollEvents();
 
@@ -98,6 +123,8 @@ int main(int argc, char *argv[])
 
             glm_translate(model, positions[i]);
 
+            ShaderUniformMat4(shader, "projection", projection);
+            ShaderUniformMat4(shader, "view", view);
             ShaderUniformMat4(shader, "model", model);
             glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
         }
