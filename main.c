@@ -8,17 +8,17 @@
 #include "VertexBuffer.h"
 #include "Window.h"
 #include "Engine.h"
+#include "Camera3D.h"
+#include <time.h>
 
-
-/*float verticies[] = {*/
-    /*-0.1, 0.5, 0.0f,*/
-    /*-0.5, -0.5, 0.0f,*/
-    /*0.5, 0.5, 0.0f,*/
-    /*0.5, -0.5, 0.0f*/
-/*};*/
+float verticies[] = {
+   -1.0f, -1.0f, 0.0f,
+   1.0f, -1.0f, 0.0f,
+   0.0f,  1.0f, 0.0f
+};
 
 extern Engine engine;
-#define MAX 100
+#define MAX 10
 
 // MAIN UPDATE AND RENDER FUNCTIONS
 void update(float dt)
@@ -35,6 +35,7 @@ void render()
 
 int main(int argc, char *argv[])
 {
+    srand(time(NULL));
     Window window = CreateWindow(engine.width,engine.height, engine.title);
 
     /*glfwSetInputMode(window.handle, GLFW_CURSOR, GLFW_CURSOR_DISABLED);*/

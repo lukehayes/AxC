@@ -15,6 +15,12 @@ Camera3D* CreateCamera()
     return camera;
 }
 
+
+void CameraUpdate(Camera3D* camera, float dt)
+{
+    // TODO Implement Camera3D update.
+}
+
 void DestroyCamera3D(Camera3D* camera)
 {
     if(camera != NULL)
