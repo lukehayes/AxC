@@ -9,6 +9,7 @@
 #include "Window.h"
 #include "Engine.h"
 #include "Camera3D.h"
+#include "Input.h"
 #include <time.h>
 
 float verticies[] = {
@@ -37,6 +38,7 @@ int main(int argc, char *argv[])
 {
     srand(time(NULL));
     Window window = CreateWindow(engine.width,engine.height, engine.title);
+    SetInput(window);
 
     /*glfwSetInputMode(window.handle, GLFW_CURSOR, GLFW_CURSOR_DISABLED);*/
 
