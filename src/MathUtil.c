@@ -1,6 +1,7 @@
 #include "MathUtil.h"
 
 
+
 /**
  * Create and return a projection matrix.
  */
@@ -16,4 +17,17 @@ mat4* PerspectiveProjection(mat4* matrix)
 void OrthographicProjection()
 {
     // TODO Implement orthographic projection.
+}
+
+/**
+ * Get a random float value.
+ *
+ * @param float from
+ * @param float to
+ *
+ * @return float
+ */
+int GetRandInt(int from, int to)
+{
+    return rand() % (from - to + 1) + from;
 }

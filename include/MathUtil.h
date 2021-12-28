@@ -21,4 +21,15 @@ mat4* PerspectiveProjection(mat4* matrix);
 void OrthographicProjection();
 
 
+/**
+ * Get a random integer value.
+ *
+ * @param float from
+ * @param float to
+ *
+ * @return float
+ */
+int GetRandInt(int from, int to);
+
+
 #endif
