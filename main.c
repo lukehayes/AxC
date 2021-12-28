@@ -74,9 +74,12 @@ int main(int argc, char *argv[])
     glm_mat4_identity(model);
 
     mat4 projection;
-    glm_perspective_default((800.0f/600.0f), projection);
+    /*glm_perspective_default((800.0f/600.0f), projection);*/
+    glm_perspective(glm_rad(45.0f), (800.0f/600.0f), 0.1f, 1000.0f, projection);
 
     vec3 eye = {0,0,-3.0f};
+    vec3 front = {0,0,-1.0f};
+    vec3 up = {0,1,0};
 
     mat4 view;
     glm_mat4_identity(view);
@@ -100,10 +103,10 @@ int main(int argc, char *argv[])
 
     glm_lookat(
             eye,
-            (vec3){0,0,0},
-            (vec3){0,1.0,0},
+            front,
+            up,
             view
-            );
+    );
 
 
         eye[2] = sin(c) * 100;
