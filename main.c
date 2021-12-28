@@ -13,9 +13,9 @@
 #include <time.h>
 
 float verticies[] = {
-   -1.0f, -1.0f, 0.0f,
-   1.0f, -1.0f, 0.0f,
-   0.0f,  1.0f, 0.0f
+    -1.0f, -1.0f, 0.0f,
+    1.0f, -1.0f, 0.0f,
+    0.0f,  1.0f, 0.0f
 };
 
 extern Engine engine;
@@ -44,12 +44,14 @@ int main(int argc, char *argv[])
     /*glfwSetInputMode(window.handle, GLFW_CURSOR, GLFW_CURSOR_DISABLED);*/
 
     Shader* shader = CreateShader(
-        "assets/shaders/passthru-vsh.glsl",
-        "assets/shaders/passthru-fsh.glsl"
-    );
+            "assets/shaders/passthru-vsh.glsl",
+            "assets/shaders/passthru-fsh.glsl"
+            );
 
     VertexArray vao = CreateVertexArray();
-    VertexBuffer buffer = CreateVertexBuffer(0,3, 12,verticies);
+    VertexBuffer buffer = CreateVertexBuffer(0,3, 9,verticies);
+
+    Camera3D* camera = CreateCamera3D();
 
     float c = 0.0;
 
@@ -59,23 +61,6 @@ int main(int argc, char *argv[])
     f32 previousTime = glfwGetTime();
     f32 FPS = 60.0;
 
-
-    mat4 model;
-    glm_mat4_identity(model);
-
-    mat4 projection;
-    /*glm_perspective_default((800.0f/600.0f), projection);*/
-    glm_perspective(glm_rad(45.0f), (800.0f/600.0f), 0.1f, 1000.0f, projection);
-
-    vec3 eye = {0,0,-3.0f};
-    vec3 front = {0,0,-1.0f};
-    vec3 up = {0,1,0};
-
-    mat4 view;
-    glm_mat4_identity(view);
-
-    glm_mat4_print(model, stderr);
-    glm_mat4_print(model, stdout);
 
     while (!glfwWindowShouldClose(window->handle))
     {
@@ -87,22 +72,14 @@ int main(int argc, char *argv[])
         now = glfwGetTime();
         previousTime = now;
 
-    glm_lookat(
-            eye,
-            front,
-            up,
-            view
-    );
-
-
-        eye[2] = sin(c) * 100;
+        Camera3DUpdate(camera, delta);
 
         /* Poll for and process events */
         glfwPollEvents();
 
-        ShaderUniformMat4(shader, "projection", projection);
-        ShaderUniformMat4(shader, "view", view);
-        ShaderUniformMat4(shader, "model", model);
+        ShaderUniformMat4(shader, "projection", camera->projection);
+        ShaderUniformMat4(shader, "view", camera->view);
+        ShaderUniformMat4(shader, "model", camera->model);
 
         UseShader(shader);
         glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
@@ -112,6 +89,7 @@ int main(int argc, char *argv[])
     }
 
     DestroyShader(shader);
+    DestroyCamera3D(camera);
     DestroyWindow(window,1);
 
     return 0;
