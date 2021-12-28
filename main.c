@@ -49,30 +49,16 @@ int main(int argc, char *argv[])
     );
 
     VertexArray vao = CreateVertexArray();
-
     VertexBuffer buffer = CreateVertexBuffer(0,3, 12,verticies);
 
     float c = 0.0;
 
+    // Loop Timing
     f32 delta = 0.0;
     f32 now = 0.0;
     f32 previousTime = glfwGetTime();
     f32 FPS = 60.0;
 
-    vec3 position = {0.0,0,0};
-
-    vec3 positions[MAX];
-
-    for (int i = 0; i < MAX; i++) 
-    {
-        vec3 v = {
-            rand() % 100 - 50,
-            rand() % 100 - 50,
-            rand() % 100 - 50
-        };
-
-        memcpy(positions[i], v, sizeof(v));
-    }
 
     mat4 model;
     glm_mat4_identity(model);
@@ -101,10 +87,6 @@ int main(int argc, char *argv[])
         now = glfwGetTime();
         previousTime = now;
 
-        /*model[0][0] = cos(c) * 100.0f;*/
-        /*model[1][1] = sin(c) * 100.0f;*/
-
-
     glm_lookat(
             eye,
             front,
@@ -118,17 +100,9 @@ int main(int argc, char *argv[])
         /* Poll for and process events */
         glfwPollEvents();
 
-        for (int i = 0; i < MAX; ++i) {
-            mat4 model;
-            glm_mat4_identity(model);
-
-            glm_translate(model, positions[i]);
-
-            ShaderUniformMat4(shader, "projection", projection);
-            ShaderUniformMat4(shader, "view", view);
-            ShaderUniformMat4(shader, "model", model);
-            glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
-        }
+        ShaderUniformMat4(shader, "projection", projection);
+        ShaderUniformMat4(shader, "view", view);
+        ShaderUniformMat4(shader, "model", model);
 
         UseShader(shader);
         glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
