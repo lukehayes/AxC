@@ -37,7 +37,8 @@ void render()
 int main(int argc, char *argv[])
 {
     srand(time(NULL));
-    Window window = CreateWindow(engine.width,engine.height, engine.title);
+    Window* window = CreateWindow(engine.width,engine.height, engine.title);
+
     SetInput(window);
 
     /*glfwSetInputMode(window.handle, GLFW_CURSOR, GLFW_CURSOR_DISABLED);*/
@@ -90,7 +91,7 @@ int main(int argc, char *argv[])
     glm_mat4_print(model, stderr);
     glm_mat4_print(model, stdout);
 
-    while (!glfwWindowShouldClose(window.handle))
+    while (!glfwWindowShouldClose(window->handle))
     {
         c+= 0.01;
         /* Render here */
@@ -133,12 +134,11 @@ int main(int argc, char *argv[])
         glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
 
         /* Swap front and back buffers */
-        glfwSwapBuffers(window.handle);
+        glfwSwapBuffers(window->handle);
     }
 
     DestroyShader(shader);
-    glfwDestroyWindow(window.handle);
-    glfwTerminate();
+    DestroyWindow(window,1);
 
     return 0;
 }

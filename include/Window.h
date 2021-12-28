@@ -42,25 +42,48 @@ void InitGLFW()
  *
  * @return Window
  */
-Window CreateWindow(s16 width, s16 height, const_str title)
+Window* CreateWindow(s16 width, s16 height, const_str title)
 {
     InitGLFW();
 
-    Window window;
-    window.width = width;
-    window.height = height;
-    window.title = title;
-    window.handle = glfwCreateWindow(width, height, title, NULL, NULL);
+    Window* window = malloc(sizeof(window));
+    window->width = width;
+    window->height = height;
+    window->title = title;
+    window->handle = glfwCreateWindow(width, height, title, NULL, NULL);
 
-    if (!window.handle)
+    if (!window->handle)
     {
-        printf("Window couldn't be created. Terminating.\n");
+        printf("Window couldn't be created.\n");
+        printf("Destroying Window.\n");
+        free(window);
+        printf("Terminating GLFW.\n");
         glfwTerminate();
     }
 
-    glfwMakeContextCurrent(window.handle);
+    glfwMakeContextCurrent(window->handle);
     gladLoadGLLoader((GLADloadproc) glfwGetProcAddress);
 
     return window;
+}
+
+/**
+ * Destroy the window and GLFW window handle. Optionally
+ * terminate GLFW if passing to second argument.
+ *
+ * @param Window* window
+ * @param int terminate_glfw     call glfwTerminate() if true.
+ *
+ * @return void
+ */
+void DestroyWindow(Window* window, int terminate_glfw)
+{
+        glfwDestroyWindow(window->handle);
+        free(window);
+
+        if(terminate_glfw)
+        {
+            glfwTerminate();
+        }
 }
 #endif
