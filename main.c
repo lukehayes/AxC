@@ -10,6 +10,7 @@
 #include "Engine.h"
 #include "Camera3D.h"
 #include "Input.h"
+#include "Model.h"
 #include <time.h>
 
 float verticies[] = {
@@ -40,6 +41,8 @@ int main(int argc, char *argv[])
     Window* window = CreateWindow(engine.width,engine.height, engine.title);
 
     SetInput(window);
+
+    Model* model = CreateModel();
 
     /*glfwSetInputMode(window.handle, GLFW_CURSOR, GLFW_CURSOR_DISABLED);*/
 
@@ -79,7 +82,7 @@ int main(int argc, char *argv[])
 
         ShaderUniformMat4(shader, "projection", camera->projection);
         ShaderUniformMat4(shader, "view", camera->view);
-        ShaderUniformMat4(shader, "model", camera->model);
+        ShaderUniformMat4(shader, "model", model->model);
 
         UseShader(shader);
         glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
@@ -88,6 +91,7 @@ int main(int argc, char *argv[])
         glfwSwapBuffers(window->handle);
     }
 
+    DestroyModel(model);
     DestroyShader(shader);
     DestroyCamera3D(camera);
     DestroyWindow(window,1);
