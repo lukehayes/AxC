@@ -6,7 +6,6 @@
 typedef struct Camera3D
 {
     vec3 position;
-    vec3 eye;
     vec3 front;
     vec3 up;
     mat4 projection;
@@ -24,9 +23,9 @@ Camera3D* CreateCamera3D()
     glm_perspective(glm_rad(45.0f), (800.0f/600.0f), 0.1f, 1000.0f, camera->projection);
     glm_mat4_identity(camera->view);
 
-    printf("%i \n", sizeof(camera->eye));
+    printf("%i \n", sizeof(camera->position));
 
-    memcpy(camera->eye,  (vec3){0,0,-3.0f}, sizeof(camera->eye));
+    memcpy(camera->position,  (vec3){0,0,-40.0f}, sizeof(camera->position));
     memcpy(camera->front,(vec3){0,0,-1.0f}, sizeof(camera->front));
     memcpy(camera->up,   (vec3){0,1.0f,0.0f},  sizeof(camera->up));
 
@@ -38,16 +37,16 @@ void Camera3DUpdate(Camera3D* camera, float dt)
 {
     static float c = 0.0;
 
-    camera->eye[2] = sin(c) * 100;
+    //camera->position[2] = sin(c) * 100;
     // TODO Implement Camera3D update.
     glm_lookat(
-            camera->eye,
+            camera->position,
             camera->front,
             camera->up,
             camera->view
             );
 
-    c+= 0.1;
+    c+= 0.01;
 }
 
 void DestroyCamera3D(Camera3D* camera)
