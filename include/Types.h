@@ -17,6 +17,7 @@ extern "C" {
 #include <assert.h>
 #include <glad/glad.h>
 #include <cglm/cglm.h>
+#include "Macros.h"
 
 #define _inline 			static inline
 #define _local_persist 		static
