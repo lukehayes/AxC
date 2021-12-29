@@ -43,6 +43,7 @@ int main(int argc, char *argv[])
     SetInput(window);
 
     Model* model = CreateModel();
+    Model* model = CreateModel((vec3){0,0,0});
 
     /*glfwSetInputMode(window.handle, GLFW_CURSOR, GLFW_CURSOR_DISABLED);*/
 
