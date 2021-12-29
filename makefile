@@ -4,8 +4,13 @@ LDFLAGS = -lglfw -lX11 -ldl -lpthread -lm
 BIN     = -o bin/app
 ENTRY   = main.c
 OBJ     = obj
-OBJS    = $(OBJ)/glad.o $(OBJ)/FileIO.o $(OBJ)/Shader.o $(OBJ)/MathUtil.o $(OBJ)/VertexBuffer.o $(OBJ)/Engine.o
-#OBJS    = $(patsubst %c, %o, $(wildcard src/*.c))
+#OBJS    = $(OBJ)/glad.o
+				  #$(OBJ)/FileIO.o
+					#$(OBJ)/Shader.o
+					#$(OBJ)/MathUtil.o
+				  #$(OBJ)/VertexBuffer.o
+				  #$(OBJ)/Engine.o
+OBJS    = $(patsubst %c, %o, $(wildcard src/*.c))
 
 $(OBJ)/%.o: src/%.c
 	$(CC) $(CFLAGS) -c $^ -o $@

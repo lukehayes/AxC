@@ -10,19 +10,21 @@ typedef struct Model
 
 } Model;
 
-Model* CreateModel()
-{
-    Model* model = malloc(sizeof(Model));
 
-    glm_mat4_identity(model->model);
+/**
+ * Create a model struct on the heap.
+ *
+ * @return Model*/
+Model* CreateModel(vec3 position);
 
-    return model;
-}
-
-void DestroyModel(Model* model)
-{
-    free(model);
-}
+/**
+ * Delete a model from memory.
+ *
+ * @param Model* model
+ *
+ * @return void
+ */
+void DestroyModel(Model* model);
 
 #endif
 
