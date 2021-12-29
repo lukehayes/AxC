@@ -3,6 +3,9 @@
 
 #include "Types.h"
 
+
+#define Create(TYPE, ...) Create##TYPE(__VA_ARGS__)
+
 typedef struct Model
 {
     vec3 position;
