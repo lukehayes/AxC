@@ -21,18 +21,6 @@ float verticies[] = {
 extern Engine engine;
 #define MAX 10
 
-// MAIN UPDATE AND RENDER FUNCTIONS
-void update(float dt)
-{
-    printf("dt: %f \n", dt);
-    engine.update(dt);
-}
-
-void render()
-{
-    printf("Rendering \n");
-}
-
 
 int main(int argc, char *argv[])
 {
