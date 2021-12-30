@@ -2,7 +2,6 @@
 #include <GLFW/glfw3.h>
 #include <stdio.h>
 #include "Types.h"
-#include "FileIO.h"
 #include "Shader.h"
 #include "VertexArray.h"
 #include "VertexBuffer.h"
