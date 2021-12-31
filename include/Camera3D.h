@@ -9,7 +9,6 @@ typedef struct Camera3D
     vec3 front;
     vec3 up;
     mat4 projection;
-    mat4 model;
     mat4 view;
 
 } Camera3D;
@@ -19,7 +18,6 @@ Camera3D* CreateCamera3D()
 {
     Camera3D* camera = malloc(sizeof(Camera3D));
 
-    glm_mat4_identity(camera->model);
     glm_perspective(glm_rad(45.0f), (800.0f/600.0f), 0.1f, 1000.0f, camera->projection);
     glm_mat4_identity(camera->view);
 
