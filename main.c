@@ -38,7 +38,7 @@ int main(int argc, char *argv[])
             "assets/shaders/passthru-fsh.glsl"
             );
 
-    VertexArray vao = CreateVertexArray();
+    VertexArray* vao = CreateVertexArray(shader);
     VertexBuffer buffer = CreateVertexBuffer(0,3, 9,verticies);
 
     Camera3D* camera = CreateCamera3D();
@@ -54,6 +54,10 @@ int main(int argc, char *argv[])
 
     while (!glfwWindowShouldClose(window->handle))
     {
+
+        /* Poll for and process events */
+        glfwPollEvents();
+
         c+= 0.01;
         /* Render here */
         glClear(GL_COLOR_BUFFER_BIT);
@@ -65,14 +69,11 @@ int main(int argc, char *argv[])
 
         Camera3DUpdate(camera, delta);
 
-        /* Poll for and process events */
-        glfwPollEvents();
-
         ShaderUniformMat4(shader, "projection", camera->projection);
         ShaderUniformMat4(shader, "view", camera->view);
         ShaderUniformMat4(shader, "model", model->model);
 
-        UseShader(shader);
+        UseShader(vao->shader);
         glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
 
         /* Swap front and back buffers */
@@ -81,6 +82,7 @@ int main(int argc, char *argv[])
 
     DestroyModel(model);
     DestroyShader(shader);
+    DestroyVertexArray(vao);
     DestroyCamera3D(camera);
     DestroyWindow(window,1);
 

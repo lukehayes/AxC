@@ -4,10 +4,14 @@
 #ifndef AX_VTXARRAY_H
 #define AX_VTXARRAY_H
 
+#include "Types.h"
+#include "Shader.h"
+
 static GLuint vertexArrayID;
 
 typedef struct VertexArray {
     GLuint id;
+    Shader* shader;
 } VertexArray;
 
 
@@ -18,10 +22,7 @@ typedef struct VertexArray {
  *
  * @return void
  */
-void BindVertexArray(VertexArray* vertexArray)
-{
-    glBindVertexArray(vertexArray->id);
-}
+void BindVertexArray(VertexArray* vertexArray);
 
 /**
  * Unbind the vertex array - Accepts a VertexArray object
@@ -33,23 +34,23 @@ void BindVertexArray(VertexArray* vertexArray)
  *
  * @return void
  */
-void UnbindVertexArray(VertexArray* vertexArray)
-{
-    glBindVertexArray(0);
-}
+void UnbindVertexArray(VertexArray* vertexArray);
 
 /**
  * Create and bind a vertex array object.
+ *
+ * @param Shader* shader
+ *
+ * @return VertexArray*
  */
-VertexArray CreateVertexArray()
-{
-    VertexArray vertexArray;
+VertexArray* CreateVertexArray(Shader* shader);
 
-    glGenVertexArrays(1, &vertexArray.id);
-    glBindVertexArray(vertexArray.id);
-
-    return vertexArray;
-}
-
+/**
+ * Destroy the vertex array
+ *
+ * @param VertexArray* vertexArray
+ *
+ */
+void DestroyVertexArray(VertexArray* vertexArray);
 
 #endif
