@@ -48,11 +48,24 @@ void CreateVertexBufferObject(VertexBuffer* buffer)
  *
  * @return VertexBuffer*
  */
-void SetBufferData(s32 attributePosition, u8 componentCount, s32 vertexCount, const float verticies[12])
+void SetBufferData(s32 attributePosition, u8 componentCount, s32 vertexCount, const float* verticies)
 {
-    glBufferData(GL_ARRAY_BUFFER, sizeof(float) * vertexCount, verticies, GL_STATIC_DRAW );
-    glVertexAttribPointer(attributePosition, componentCount, GL_FLOAT, GL_FALSE, 0, (void*)0);
-    glEnableVertexAttribArray(attributePosition);
+    float* dataArray = malloc(sizeof(float) * (vertexCount + 1));
+    memcpy(dataArray, verticies, sizeof(float) * vertexCount);
+
+
+    printf("data shown --- \n");
+    for(int i = 0; i <= vertexCount; i++)
+    {
+        printf("\t data: %i \n", dataArray[i]);
+    }
+    printf("data shown --- \n");
+
+    /*glBufferData(GL_ARRAY_BUFFER, sizeof(float) * vertexCount, verticies, GL_STATIC_DRAW );*/
+    /*glVertexAttribPointer(attributePosition, componentCount, GL_FLOAT, GL_FALSE, 0, (void*)0);*/
+    /*glEnableVertexAttribArray(attributePosition);*/
+
+    free(dataArray);
 }
 
 
@@ -67,6 +80,15 @@ VertexBuffer CreateVertexBuffer(s32 attributePosition, u8 componentCount, s32 ve
     buffer.bind = &BindVertexBuffer;
     buffer.unbind = &UnBindVertexBuffer;
     buffer.destroy = &DestroyVertexBuffer;
+
+   printf("\t POINTER data: %i \n", verticies);
+
+    printf("CREATE data shown --- \n");
+    for(int i = 0; i <= vertexCount; i++)
+    {
+        printf("\t data: %i \n", verticies[i]);
+    }
+    printf("CREATE data shown --- \n");
 
     CreateVertexBufferObject(&buffer);
 
