@@ -10,7 +10,7 @@ OBJ     = obj
 					#$(OBJ)/MathUtil.o
 				  #$(OBJ)/VertexBuffer.o
 				  #$(OBJ)/Engine.o
-OBJS    = $(patsubst %c, %o, $(wildcard src/*.c))
+OBJS    = $(patsubst src/%c, obj/%o, $(wildcard src/*.c))
 
 $(OBJ)/%.o: src/%.c
 	$(CC) $(CFLAGS) -c $^ -o $@
