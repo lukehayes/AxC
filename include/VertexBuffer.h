@@ -5,6 +5,7 @@
 #define AX_VTXBUFFER_H
 
 #include "Types.h"
+#include "VertexAttrib.h"
 
 typedef struct VertexBuffer {
     GLuint id;
@@ -51,13 +52,14 @@ void CreateVertexBufferObject(VertexBuffer* buffer);
  * @return VertexBuffer*
  */
 //void SetBufferData(s32 attributePosition, u8 componentCount, s32 vertexCount, const float verticies[12]);
-void SetBufferData(s32 attributePosition, u8 componentCount, s32 vertexCount, const float* verticies);
+void SetBufferData(VertexAttrib* attrib);
 
 /**
  * Create a VertexBuffer struct.
  *
  * @return VertexBuffer
  */
-VertexBuffer CreateVertexBuffer(s32 attributePosition, u8 componentCount, s32 vertexCount, const float verticies[12]);
+//VertexBuffer CreateVertexBuffer(s32 attributePosition, u8 componentCount, s32 vertexCount, const float verticies[12]);
+VertexBuffer CreateVertexBuffer(VertexAttrib* attrib);
 
 #endif

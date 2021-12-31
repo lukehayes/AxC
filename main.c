@@ -10,12 +10,16 @@
 #include "Camera3D.h"
 #include "Input.h"
 #include "Model.h"
+#include "VertexAttrib.h"
 #include <time.h>
 
 float verticies[] = {
     -1.0f, -1.0f, 0.0f,
     1.0f, -1.0f, 0.0f,
-    0.0f,  1.0f, 0.0f
+    0.0f,  1.0f, 0.0f,
+    -1.0f,  0.0f, 0.0f,
+    0.3f,  1.0f, 0.0f,
+    0.0f,  -1.0f, 0.0f
 };
 
 extern Engine engine;
@@ -31,6 +35,14 @@ int main(int argc, char *argv[])
 
     Model* model = CreateModel((vec3){0,0,0});
 
+    VertexAttrib attrib;
+    attrib.position = 0;
+    attrib.vertexCount = 18;
+    attrib.componentCount = 6;
+
+    attrib.verticies = malloc(sizeof(float) * attrib.vertexCount);
+    memcpy(attrib.verticies, verticies, sizeof(float) * attrib.vertexCount );
+
     /*glfwSetInputMode(window.handle, GLFW_CURSOR, GLFW_CURSOR_DISABLED);*/
 
     Shader* shader = CreateShader(
@@ -39,7 +51,9 @@ int main(int argc, char *argv[])
             );
 
     VertexArray* vao = CreateVertexArray(shader);
-    VertexBuffer buffer = CreateVertexBuffer(0,3, 9,verticies);
+    VertexBuffer buffer = CreateVertexBuffer(&attrib);
+
+    free(attrib.verticies);
 
     Camera3D* camera = CreateCamera3D();
 
