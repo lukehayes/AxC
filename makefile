@@ -1,4 +1,4 @@
-CC      = gcc
+CC      = gcc -std=c17
 CFLAGS  = -Iinclude
 LDFLAGS = -lglfw -lX11 -ldl -lpthread -lm
 BIN     = -o bin/app
