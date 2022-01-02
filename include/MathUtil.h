@@ -31,5 +31,7 @@ void OrthographicProjection();
  */
 int GetRandInt(int from, int to);
 
+void PrintMat4(mat4 m);
+
 
 #endif
