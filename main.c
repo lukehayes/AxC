@@ -76,7 +76,7 @@ int main(int argc, char *argv[])
 
         c+= 0.01;
         /* Render here */
-        Clear();
+        RenderClear();
 
         now = glfwGetTime();
         previousTime = now;
@@ -87,7 +87,7 @@ int main(int argc, char *argv[])
         ShaderUniformMat4(shader, "view", camera->view);
         ShaderUniformMat4(shader, "model", model->model);
 
-        GLDrawBasic(vao->shader, 6);
+        RenderDrawBasic(vao->shader, 6);
 
         /* Swap front and back buffers */
         glfwSwapBuffers(window->handle);
