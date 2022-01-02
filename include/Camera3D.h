@@ -10,6 +10,7 @@ typedef struct Camera3D
     vec3 up;
     mat4 projection;
     mat4 view;
+    mat4 combined;
 
 } Camera3D;
 
@@ -23,9 +24,12 @@ Camera3D* CreateCamera3D()
 
     printf("%i \n", sizeof(camera->position));
 
-    memcpy(camera->position,  (vec3){0,0,-40.0f}, sizeof(camera->position));
+    memcpy(camera->position,  (vec3){0,0,-10.0f}, sizeof(camera->position));
     memcpy(camera->front,(vec3){0,0,-1.0f}, sizeof(camera->front));
     memcpy(camera->up,   (vec3){0,1.0f,0.0f},  sizeof(camera->up));
+
+    glm_mat4_identity(camera->combined);
+    glm_mat4_mul(camera->projection, camera->view, camera->combined);
 
     return camera;
 }

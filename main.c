@@ -83,8 +83,11 @@ int main(int argc, char *argv[])
 
         Camera3DUpdate(camera, delta);
 
-        ShaderUniformMat4(shader, "projection", camera->projection);
-        ShaderUniformMat4(shader, "view", camera->view);
+        glm_rotate(model->model, glm_rad(sin(c)), (vec3){1,1,1});
+
+        PrintMat4(camera->combined);
+
+        ShaderUniformMat4(shader, "combined", camera->combined);
         ShaderUniformMat4(shader, "model", model->model);
 
         RenderDrawBasic(vao->shader, 6);
