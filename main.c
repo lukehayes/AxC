@@ -11,15 +11,17 @@
 #include "Input.h"
 #include "Model.h"
 #include "VertexAttrib.h"
+#include "Render.h"
 #include <time.h>
 
 float verticies[] = {
     -1.0f, -1.0f, 0.0f,
     1.0f, -1.0f, 0.0f,
     0.0f,  1.0f, 0.0f,
-    -1.0f,  0.0f, 0.0f,
-    0.3f,  1.0f, 0.0f,
-    0.0f,  -1.0f, 0.0f
+
+    -1.0f, 0.5f, 0.0f,
+    1.0f,  0.5f, 0.0f,
+    0.0f,  1.0f, 0.0f
 };
 
 extern Engine engine;
@@ -38,7 +40,7 @@ int main(int argc, char *argv[])
     VertexAttrib attrib;
     attrib.position = 0;
     attrib.vertexCount = 18;
-    attrib.componentCount = 6;
+    attrib.componentCount = 3;
 
     attrib.verticies = malloc(sizeof(float) * attrib.vertexCount);
     memcpy(attrib.verticies, verticies, sizeof(float) * attrib.vertexCount );
@@ -87,8 +89,7 @@ int main(int argc, char *argv[])
         ShaderUniformMat4(shader, "view", camera->view);
         ShaderUniformMat4(shader, "model", model->model);
 
-        UseShader(vao->shader);
-        glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+        GLDrawBasic(vao->shader, 6);
 
         /* Swap front and back buffers */
         glfwSwapBuffers(window->handle);
