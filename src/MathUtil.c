@@ -39,10 +39,19 @@ void PrintMat4(mat4 m)
         for(int j = 0; j <= 3; j++)
         {
             int v = m[i][j];
-            printf("| %i |", v);
+
+            // Check if number is less than zero because
+            // negative numbers mess up formatting.
+            if(v < 0 )
+            {
+                printf("|%i ", v);
+            }else
+            {
+                printf("| %i ", v);
+            }
 
         }
-        printf("\n");
+        printf("| \n");
     }
      
     printf("\n");

@@ -20,7 +20,6 @@ mat4* PerspectiveProjection(mat4* matrix);
  */
 void OrthographicProjection();
 
-
 /**
  * Get a random integer value.
  *
@@ -31,6 +30,13 @@ void OrthographicProjection();
  */
 int GetRandInt(int from, int to);
 
+/**
+ * Print a mat4 variable for debugging.
+ *
+ * @param mat4 m
+ *
+ * @return void
+ */
 void PrintMat4(mat4 m);
 
 
