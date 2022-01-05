@@ -43,7 +43,7 @@ void UnbindVertexArray(VertexArray* vertexArray);
  *
  * @return VertexArray*
  */
-VertexArray* CreateVertexArray(Shader* shader);
+VertexArray CreateVertexArray(Shader* shader);
 
 /**
  * Destroy the vertex array

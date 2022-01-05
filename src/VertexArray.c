@@ -10,14 +10,23 @@ void UnbindVertexArray(VertexArray* vertexArray)
     glBindVertexArray(0);
 }
 
-VertexArray* CreateVertexArray(Shader* shader)
+VertexArray CreateVertexArray(Shader* shader)
 {
-    VertexArray* vertexArray = malloc(sizeof(VertexArray));
+    /*VertexArray* vertexArray = malloc(sizeof(VertexArray));*/
 
-    glGenVertexArrays(1, &vertexArray->id);
-    glBindVertexArray(vertexArray->id);
+    /*glGenVertexArrays(1, &vertexArray->id);*/
+    /*glBindVertexArray(vertexArray->id);*/
 
-    vertexArray->shader = shader;
+    /*vertexArray->shader = shader;*/
+
+    /*return vertexArray;*/
+
+    VertexArray vertexArray;
+
+    glGenVertexArrays(1, &vertexArray.id);
+    glBindVertexArray(vertexArray.id);
+
+    vertexArray.shader = shader;
 
     return vertexArray;
 }

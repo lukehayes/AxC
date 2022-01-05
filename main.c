@@ -52,7 +52,7 @@ int main(int argc, char *argv[])
             "assets/shaders/passthru-fsh.glsl"
             );
 
-    VertexArray* vao = CreateVertexArray(shader);
+    VertexArray vao = CreateVertexArray(shader);
     VertexBuffer buffer = CreateVertexBuffer(&attrib);
 
     free(attrib.verticies);
@@ -98,7 +98,7 @@ int main(int argc, char *argv[])
 
     DestroyModel(model);
     DestroyShader(shader);
-    DestroyVertexArray(vao);
+    /*DestroyVertexArray(vao);*/
     DestroyCamera3D(camera);
     DestroyWindow(window,1);
 
