@@ -11,16 +11,6 @@
 #include <cglm/cglm.h>
 
 /**
- * Create and return a projection matrix.
- */
-mat4* PerspectiveProjection(mat4* matrix);
-
-/**
- * Create and return a orthographic matrix.
- */
-void OrthographicProjection();
-
-/**
  * Get a random integer value.
  *
  * @param float from
