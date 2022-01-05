@@ -1,13 +1,5 @@
 #include "MathUtil.h"
 
-/**
- * Get a random float value.
- *
- * @param float from
- * @param float to
- *
- * @return float
- */
 int GetRandInt(int from, int to)
 {
     return rand() % (from - to + 1) + from;
