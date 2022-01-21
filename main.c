@@ -89,7 +89,7 @@ int main(int argc, char *argv[])
         ShaderUniformMat4(shader, "view", camera->view);
         ShaderUniformMat4(shader, "model", model->model);
 
-        RenderDrawBasic(vao->shader, 6);
+        RenderDrawBasic(shader, 6);
 
         /* Swap front and back buffers */
         glfwSwapBuffers(window->handle);
