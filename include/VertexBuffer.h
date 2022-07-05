@@ -1,8 +1,7 @@
 /**
  * Vertex Buffer abstraction.
  */
-#ifndef AX_VTXBUFFER_H
-#define AX_VTXBUFFER_H
+#pragma once
 
 #include "Types.h"
 #include "VertexAttrib.h"
@@ -61,5 +60,3 @@ void SetBufferData(VertexAttrib* attrib);
  */
 //VertexBuffer CreateVertexBuffer(s32 attributePosition, u8 componentCount, s32 vertexCount, const float verticies[12]);
 VertexBuffer CreateVertexBuffer(VertexAttrib* attrib);
-
-#endif

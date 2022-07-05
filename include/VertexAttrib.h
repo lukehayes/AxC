@@ -1,12 +1,11 @@
-#ifndef AX_VERTEX_ATTRIB_H
-#define AX_VERTEX_ATTRIB_H
-
-#include "Types.h"
-
 /**
  * Struct represents a single location to hold all the
  * data needer per vertex attribute.
  */
+#pragma once
+
+#include "Types.h"
+
 typedef struct VertexAttrib
 {
     s32 position;
@@ -15,5 +14,3 @@ typedef struct VertexAttrib
     f32* verticies;
 
 } VertexAttrib;
-
-#endif

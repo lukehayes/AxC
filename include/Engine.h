@@ -3,8 +3,7 @@
  * about the engine or function pointers to 
  * change functionality.
  */
-#ifndef AX_ENGINE_H
-#define AX_ENGINE_H
+#pragma once
 
 #include "Types.h"
 
@@ -22,5 +21,3 @@ typedef struct Engine {
  */
 Engine CreateEngine();
 
-
-#endif

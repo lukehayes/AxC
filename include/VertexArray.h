@@ -1,8 +1,7 @@
 /**
  * Vertex Array abstraction.
  */
-#ifndef AX_VTXARRAY_H
-#define AX_VTXARRAY_H
+#pragma once
 
 #include "Types.h"
 #include "Shader.h"
@@ -52,5 +51,3 @@ VertexArray CreateVertexArray(Shader* shader);
  *
  */
 void DestroyVertexArray(VertexArray* vertexArray);
-
-#endif

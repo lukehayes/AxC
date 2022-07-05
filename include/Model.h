@@ -1,5 +1,4 @@
-#ifndef AX_MODEL_H
-#define AX_MODEL_H
+#pragma once
 
 #include "Types.h"
 
@@ -31,6 +30,3 @@ Model* CreateModel(vec3 position);
  * @return void
  */
 void DestroyModel(Model* model);
-
-#endif
-

@@ -1,8 +1,7 @@
 /**
  * Abstraction for reading in file contents.
  */
-#ifndef AX_FILEIO_H
-#define AX_FILEIO_H
+#pragma once
 
 #include "Types.h"
 
@@ -34,5 +33,3 @@ static int GetFileSize(const char* filename);
  * @return char*
  */
 char* ReadFile(const char* filename);
-
-#endif

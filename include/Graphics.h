@@ -1,8 +1,7 @@
 /**
  * OpenGL/Graphics/Rendering abstractions.
  */
-#ifndef AX_GFX_H
-#define AX_GFX_H
+#pragma once
 
 /**
  * Draw a square at a particular position.
@@ -14,6 +13,3 @@ void Draw(float x, float y)
     // Update the shader with this new model matrix.
     // Call glDraw()... function to display the shape.
 }
-
-
-#endif

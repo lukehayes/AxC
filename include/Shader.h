@@ -1,5 +1,4 @@
-#ifndef AX_SHADER_H
-#define AX_SHADER_H
+#pragma once
 
 #include "Types.h"
 #include "MathUtil.h"
@@ -95,5 +94,3 @@ void ShaderUniform3f(const Shader* shader, const char* name, vec3 value);
  * @return void
  */
 void ShaderUniformMat4(const Shader* shader, const char* name, mat4 matrix);
-
-#endif

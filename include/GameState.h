@@ -2,8 +2,7 @@
  * A struct that holds global information about
  * the game at a particular moment.
  */
-#ifndef AX_GAMESTATE_H
-#define AX_GAMESTATE_H
+#pragma once
 
 typedef struct GameState {
 
@@ -13,4 +12,3 @@ typedef struct GameState {
 
 GameState gamestate;
 
-#endif

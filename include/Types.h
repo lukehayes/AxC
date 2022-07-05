@@ -1,5 +1,4 @@
-#ifndef AxC_TYPES_H
-#define AxC_TYPES_H
+#pragma once
 
 #ifdef __cplusplus
 extern "C" {
@@ -75,6 +74,3 @@ typedef mat4 	        M4;
 #ifdef __cplusplus
 }
 #endif 	// c++
-
-#endif // AxM_TYPES_H
-

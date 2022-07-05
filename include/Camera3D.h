@@ -1,5 +1,4 @@
-#ifndef CAMERA3D_H
-#define CAMERA3D_H
+#pragma once
 
 #include "Types.h"
 
@@ -61,5 +60,3 @@ void DestroyCamera3D(Camera3D* camera)
         printf("Camera was NULL! Cannot be freed again. \n");
     }
 }
-
-#endif

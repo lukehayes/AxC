@@ -1,8 +1,7 @@
 /**
  * Window/GLFW Window abstraction.
  */
-#ifndef AX_WINDOW_H
-#define AX_WINDOW_H
+#pragma once
 
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
@@ -86,4 +85,3 @@ void DestroyWindow(Window* window, int terminate_glfw)
             glfwTerminate();
         }
 }
-#endif

@@ -1,8 +1,7 @@
 /**
  * A single location for adding Input.
  */
-#ifndef AX_INPUT_H
-#define AX_INPUT_H
+#pragma once
 
 #include "Types.h"
 
@@ -19,5 +18,3 @@ void SetInput(Window* window)
     glfwSetKeyCallback(window->handle, KeyInputCallback);
 }
 
-
-#endif

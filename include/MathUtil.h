@@ -5,8 +5,7 @@
  * and aims to be written in such a way that its inner
  * library can be swapped out for another one easily.
  */
-#ifndef AX_MATHUTIL_H
-#define AX_MATHUTIL_H
+#pragma once
 
 #include <cglm/cglm.h>
 
@@ -29,5 +28,3 @@ int GetRandInt(int from, int to);
  */
 void PrintMat4(mat4 m);
 
-
-#endif
