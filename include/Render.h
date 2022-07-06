@@ -1,15 +1,12 @@
 #pragma once
+#include "Types.h"
+#include "Shader.h"
 
-void RenderClear()
-{
-    glClear(GL_COLOR_BUFFER_BIT);
-    glClearColor(0.3f, 0.3f, 0.3f, 1.0f);
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-}
+void RenderClear(float r, float g, float b);
 
+void RenderDrawBasic(Shader* shader, int indices);
 
-void RenderDrawBasic(Shader* shader, int indices)
-{
-    UseShader(shader);
-    glDrawArrays(GL_TRIANGLES, 0, indices);
-}
+void RenderBegin();
+void RenderQuad();
+void RenderEnd();
+
