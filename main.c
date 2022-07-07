@@ -76,7 +76,7 @@ int main(int argc, char *argv[])
 
         c+= 0.01;
         /* Render here */
-        RenderClear();
+        RenderClear(0.2,0.2,0.3);
 
         now = glfwGetTime();
         previousTime = now;
