@@ -15,6 +15,7 @@ extern "C" {
 #include <math.h>
 #include <assert.h>
 #include <glad/glad.h>
+#include <GLFW/glfw3.h>
 #include <cglm/cglm.h>
 #include "Macros.h"
 
