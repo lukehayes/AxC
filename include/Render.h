@@ -1,8 +1,9 @@
 #pragma once
 #include "Types.h"
-#include "Shader.h"
 
-void RenderClear(float r, float g, float b);
+/**
+ * Initalize globals, GLFW and OpenGL **/
+void render_init(void);
 
 void RenderBegin();
 void RenderQuad();

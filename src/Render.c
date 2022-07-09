@@ -1,4 +1,13 @@
 #include "Render.h"
+#include "Global.h"
+
+void render_init(void)
+{
+	global.width  = 640;
+	global.height = 480;
+	global.title  = "Game";
+}
+
 
 void RenderClear(float r, float g, float b)
 {

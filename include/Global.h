@@ -1,12 +1,14 @@
+#pragma once
+
 /**
  * Global state and variables for the game.
  */
-#pragma once
-
-
 typedef struct global
 {
-	char* name;
+   int       width;
+   int       height;
+   const_str title;
+
 } Global;
 
 extern Global global;
