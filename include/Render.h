@@ -20,5 +20,8 @@ void render_begin();
 
 void render_quad();
 
+/**
+ * Swap buffers and blit the screen.
+ */
 void render_end();
 
