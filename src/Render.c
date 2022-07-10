@@ -41,3 +41,8 @@ void render_clear(float r, float g, float b)
 void RenderBegin() {}
 void RenderQuad() {}
 void RenderEnd() {}
+void render_end() 
+{
+	glfwSwapBuffers(global.window);
+}
+
