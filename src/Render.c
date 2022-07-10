@@ -1,6 +1,8 @@
 #include "Render.h"
 #include "Global.h"
 
+GLState gl_state = {0};
+
 void render_init(void)
 {
 	global.width  = 640;
@@ -46,3 +48,39 @@ void render_end()
 	glfwSwapBuffers(global.window);
 }
 
+// ----------------------------------------------------------------------------
+// OpenGL Render Functions 
+// ----------------------------------------------------------------------------
+
+void render_init_quad()
+{
+	GLuint vbo;
+
+	glGenVertexArrays(1, &gl_state.quad_vao);
+	glBindVertexArray(gl_state.quad_vao);
+
+	glGenBuffers(1, &vbo);
+	glBindBuffer(GL_ARRAY_BUFFER, vbo);
+
+	const float verticies[] = {
+	   -1.0f, -1.0f, 0.0f,
+	   1.0f, -1.0f, 0.0f,
+	   0.0f,  1.0f, 0.0f,
+	};
+
+	glBufferData(
+			GL_ARRAY_BUFFER,
+			sizeof(verticies),
+			verticies,
+			GL_STATIC_DRAW);
+
+	glEnableVertexAttribArray(0);
+	glVertexAttribPointer(
+		0,                  // attribute 0. No particular reason for 0, but must match the layout in the shader.
+		3,                  // size
+		GL_FLOAT,           // type
+		GL_FALSE,           // normalized?
+		0,                  // stride
+		(void*)0            // array buffer offset
+	);
+}

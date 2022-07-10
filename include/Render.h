@@ -25,3 +25,19 @@ void render_quad();
  */
 void render_end();
 
+// ----------------------------------------------------------------------------
+// OpenGL Render Functions 
+// ----------------------------------------------------------------------------
+
+// VAOS etc are stored here.
+typedef struct gl_state
+{
+	GLuint quad_vao;
+} GLState;
+
+extern GLState gl_state;
+
+/**
+ * Initialize a quad for OpenGL
+ */
+void render_init_quad();
