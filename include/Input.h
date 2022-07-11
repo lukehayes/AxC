@@ -13,8 +13,8 @@ static void KeyInputCallback(GLFWwindow* window, int key, int scancode, int acti
     }
 }
 
-void SetInput(Window* window)
+void SetInput(GLFWwindow* window)
 {
-    glfwSetKeyCallback(window->handle, KeyInputCallback);
+    glfwSetKeyCallback(window, KeyInputCallback);
 }
 
