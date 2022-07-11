@@ -13,7 +13,6 @@ int main(int argc, char *argv[])
     srand(time(NULL));
 
 	render_init();
-	render_init_quad();
 
 	Shader* shader = CreateShader(
 				    "assets/shaders/passthru-vsh.glsl",

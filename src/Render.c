@@ -29,6 +29,9 @@ void render_init(void)
 
 	glfwMakeContextCurrent(global.window);
 	gladLoadGLLoader((GLADloadproc) glfwGetProcAddress);
+
+	// Initialize basic primitives.
+	render_init_quad();
 }
 
 
