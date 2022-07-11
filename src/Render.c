@@ -40,7 +40,11 @@ void render_clear(float r, float g, float b)
 
 
 void render_begin() {}
-void render_quad() {}
+void render_quad() 
+{
+	glBindVertexArray(gl_state.quad_vao);
+	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+}
 
 void render_end() 
 {
