@@ -33,8 +33,8 @@ void render_init(void)
 
 	// Initialize basic primitives.
 	render_init_quad();
-
-
+	
+	// Initialize default shaders
 	gl_state.default_shader = CreateShader(
 				    "assets/shaders/passthru-vsh.glsl",
 				    "assets/shaders/passthru-fsh.glsl"
