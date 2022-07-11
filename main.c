@@ -35,7 +35,6 @@ int main(int argc, char *argv[])
 		previousTime = now;
 
 
-		render_clear(sin(delta) * 100.0,0.2,0.25);
 		UseShader(shader);
 
 		glDrawArrays(GL_TRIANGLES, 0, 3);
