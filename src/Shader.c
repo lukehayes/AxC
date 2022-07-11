@@ -1,17 +1,17 @@
 #include "Shader.h"
 #include "Types.h"
 
-GLuint shaderProgram;
-GLuint vertexObject;
-GLuint fragmentObject;
+GLuint      shaderProgram;
+GLuint      vertexObject;
+GLuint      fragmentObject;
 char const* vertexSource;
-char const* fragmentSource; 
-Shader program;
+char const* fragmentSource;
+Shader      program;
 
-typedef struct AxShader {
-    GLuint program;
+typedef struct AxShader
+{
+   GLuint program;
 } Shader;
-
 
 /**
  * Check for compilation errors during shader creation.
