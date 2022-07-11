@@ -16,11 +16,9 @@ int main(int argc, char *argv[])
 	render_init_quad();
 
 	Shader* shader = CreateShader(
-				     "assets/shaders/passthru-vsh.glsl",
-				     "assets/shaders/passthru-fsh.glsl"
-					 );
-
-
+				    "assets/shaders/passthru-vsh.glsl",
+				    "assets/shaders/passthru-fsh.glsl"
+					);
 
     // Loop Timing
     f32 delta = 0.0;
