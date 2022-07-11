@@ -34,10 +34,9 @@ int main(int argc, char *argv[])
 		delta = now - previousTime;
 		previousTime = now;
 
+			UseShader(shader);
 
-		UseShader(shader);
-
-		glDrawArrays(GL_TRIANGLES, 0, 3);
+		render_quad();
 		render_end();
 	}
 
