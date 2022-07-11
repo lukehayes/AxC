@@ -1,5 +1,6 @@
 #include "Render.h"
 #include "Global.h"
+#include "Shader.h"
 
 GLState gl_state = {0};
 
@@ -32,17 +33,29 @@ void render_init(void)
 
 	// Initialize basic primitives.
 	render_init_quad();
+
+
+	gl_state.default_shader = CreateShader(
+				    "assets/shaders/passthru-vsh.glsl",
+				    "assets/shaders/passthru-fsh.glsl"
+					);
 }
 
 
 void render_clear(float r, float g, float b)
 {
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glClearColor(r,g,b, 1.0f);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 }
 
 
-void render_begin() {}
+void render_begin(float r, float g, float b)
+{
+	glClearColor(r,g,b, 1.0f);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+	UseShader(gl_state.default_shader);
+}
 void render_quad() 
 {
 	glBindVertexArray(gl_state.quad_vao);

@@ -4,7 +4,6 @@
 #include "Render.h"
 #include "Input.h"
 #include "Global.h"
-#include "Shader.h"
 
 #define MAX 10
 
@@ -13,11 +12,7 @@ int main(int argc, char *argv[])
     srand(time(NULL));
 
 	render_init();
-
-	Shader* shader = CreateShader(
-				    "assets/shaders/passthru-vsh.glsl",
-				    "assets/shaders/passthru-fsh.glsl"
-					);
+	render_init_quad();
 
     // Loop Timing
     f32 delta = 0.0;
@@ -29,17 +24,16 @@ int main(int argc, char *argv[])
 	{
 		glfwPollEvents();
 
-		now = glfwGetTime();
-		delta = now - previousTime;
-		previousTime = now;
+			now = glfwGetTime();
+			delta = now - previousTime;
+			previousTime = now;
 
-			UseShader(shader);
-
+		render_begin(0.3,0.3,0.42);
 		render_quad();
 		render_end();
 	}
 
-	DestroyShader(shader);
+	DestroyShader(gl_state.default_shader);
 
     return 0;
 }

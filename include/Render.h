@@ -1,5 +1,6 @@
 #pragma once
 #include "Types.h"
+#include "Shader.h"
 
 /**
  * Initalize globals, GLFW and OpenGL **/
@@ -16,7 +17,16 @@ void render_init(void);
  */
 void render_clear(float r, float g, float b);
 
-void render_begin();
+/**
+ * Clear the screen with related bit masks and a color.
+ *
+ * @param float r    Red value from 0.0 to 1.0.
+ * @param float g    Green value from 0.0 to 1.0.
+ * @param float b    Blue value from 0.0 to 1.0.
+ *
+ * @return void
+ */
+void render_begin(float r, float g, float b);
 
 void render_quad();
 
@@ -33,6 +43,7 @@ void render_end();
 typedef struct gl_state
 {
 	GLuint quad_vao;
+	Shader* default_shader;
 } GLState;
 
 extern GLState gl_state;
