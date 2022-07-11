@@ -29,7 +29,6 @@ void render_init(void)
 
 	glfwMakeContextCurrent(global.window);
 	gladLoadGLLoader((GLADloadproc) glfwGetProcAddress);
-
 }
 
 
@@ -54,26 +53,44 @@ void render_end()
 
 void render_init_quad()
 {
-	GLuint vbo;
+	GLuint VBO;
+	GLuint EBO;
+	GLenum bufferType = GL_ARRAY_BUFFER;
 
+	float verticies[] = {
+		 0.5f,  0.5f, 0.0f,  // top right
+		 0.5f, -0.5f, 0.0f,  // bottom right
+		-0.5f, -0.5f, 0.0f,  // bottom left
+		-0.5f,  0.5f, 0.0f   // top left 
+	};
+
+	unsigned int indices[] = {  // note that we start from 0!
+		0, 1, 3,   // first triangle
+		1, 2, 3    // second triangle
+	};  
+
+	// Generate and bind vertex array
 	glGenVertexArrays(1, &gl_state.quad_vao);
 	glBindVertexArray(gl_state.quad_vao);
 
-	glGenBuffers(1, &vbo);
-	glBindBuffer(GL_ARRAY_BUFFER, vbo);
-
-	const float verticies[] = {
-	   -1.0f, -1.0f, 0.0f,
-	   1.0f, -1.0f, 0.0f,
-	   0.0f,  1.0f, 0.0f,
-	};
+	// Generate and bind vertex buffer
+	glGenBuffers(1, &VBO);
+	glBindBuffer(bufferType, VBO);
 
 	glBufferData(
-			GL_ARRAY_BUFFER,
+			bufferType,
 			sizeof(verticies),
 			verticies,
 			GL_STATIC_DRAW);
 
+
+	// Generate and bind index buffer
+	glGenBuffers(1, &EBO);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW); 
+
+	
+	// Set attribute pointers etc.
 	glEnableVertexAttribArray(0);
 	glVertexAttribPointer(
 		0,                  // attribute 0. No particular reason for 0, but must match the layout in the shader.
