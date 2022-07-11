@@ -22,18 +22,20 @@ int main(int argc, char *argv[])
 
     // Loop Timing
     f32 delta = 0.0;
-    f32 now = 0.0;
-    f32 previousTime = glfwGetTime();
+    f32 now = glfwGetTime();
+    f32 previousTime = now;
     f32 FPS = 60.0;
-
-
-
 
 	while (!glfwWindowShouldClose(global.window))
 	{
 		glfwPollEvents();
-		render_clear(0.2,0.2,0.25);
 
+		now = glfwGetTime();
+		delta = now - previousTime;
+		previousTime = now;
+
+
+		render_clear(sin(delta) * 100.0,0.2,0.25);
 		UseShader(shader);
 
 		glDrawArrays(GL_TRIANGLES, 0, 3);
