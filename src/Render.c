@@ -1,6 +1,7 @@
 #include "Render.h"
 #include "Global.h"
 #include "Shader.h"
+#include "Types.h"
 
 GLState gl_state = {0};
 
@@ -36,8 +37,8 @@ void render_init(void)
 	
 	// Initialize default shaders
 	gl_state.default_shader = CreateShader(
-				    "assets/shaders/passthru-vsh.glsl",
-				    "assets/shaders/passthru-fsh.glsl"
+				    "assets/shaders/default-vsh.glsl",
+				    "assets/shaders/default-fsh.glsl"
 					);
 }
 
@@ -56,8 +57,28 @@ void render_begin(float r, float g, float b)
 
 	UseShader(gl_state.default_shader);
 }
-void render_quad() 
+
+
+void render_quad(float x, float y)
 {
+	mat4 projection = GLM_MAT4_IDENTITY_INIT;
+	glm_mat4_identity(projection);
+
+	glm_ortho(-(global.width/ 2.0f), global.width / 2.0f, 
+		global.height / 2.0f, -(global.height / 2.0f), 
+	  -1000.0f, 1000.0f, projection);
+
+	
+	mat4 model = GLM_MAT4_IDENTITY_INIT;
+	glm_mat4_identity(model);
+
+	glm_translate_x(model, x);
+	glm_translate_y(model, y);
+
+	ShaderUniformMat4(gl_state.default_shader, "projection", projection);
+	ShaderUniformMat4(gl_state.default_shader, "model", model);
+
+
 	glBindVertexArray(gl_state.quad_vao);
 	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 	glBindVertexArray(0);

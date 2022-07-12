@@ -31,9 +31,12 @@ void render_begin(float r, float g, float b);
 /**
  * Render a quad to the screen.
  *
+ * @param float x    X axis position.
+ * @param float y    Y axis position.
+ *
  * @return void
  */
-void render_quad();
+void render_quad(float x, float y);
 
 /**
  * Swap buffers and blit the screen.
