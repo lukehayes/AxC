@@ -28,6 +28,11 @@ void render_clear(float r, float g, float b);
  */
 void render_begin(float r, float g, float b);
 
+/**
+ * Render a quad to the screen.
+ *
+ * @return void
+ */
 void render_quad();
 
 /**
