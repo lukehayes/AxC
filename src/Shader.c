@@ -122,6 +122,13 @@ void ShaderUniform3f(const Shader* shader, const char* name, vec3 value)
     glUniform3f(location, value[0], value[1], value[2]);
 }
 
+void ShaderSetColor(const Shader* shader, const char* name, Color color)
+{
+    GLuint location = glGetUniformLocation(shader->program, name);
+    glUniform3f(location, color.r, color.g, color.b);
+}
+
+
 void ShaderUniformMat4(const Shader* shader, const char* name, mat4 matrix)
 {
     GLuint location = glGetUniformLocation(shader->program, name);

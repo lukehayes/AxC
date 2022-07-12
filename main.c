@@ -4,6 +4,7 @@
 #include "Render.h"
 #include "Input.h"
 #include "Global.h"
+#include "Types.h"
 
 #define MAX 10
 
@@ -12,16 +13,16 @@ int main(int argc, char *argv[])
     srand(time(NULL));
 
 	render_init();
-	render_init_quad();
 
 	while (!glfwWindowShouldClose(global.window))
 	{
 		glfwPollEvents();
 
-		printf("Delta: %f \n", get_delta_time());
+		/*printf("Delta: %f \n", get_delta_time());*/
 
-		render_begin(0.3,0.3,0.42);
-		render_quad();
+		render_begin(0.1,0.1,0.42);
+		render_quad(0,0);
+		render_quad(20,20);
 		render_end();
 	}
 
@@ -29,4 +30,3 @@ int main(int argc, char *argv[])
 
     return 0;
 }
-

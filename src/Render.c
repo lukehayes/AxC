@@ -2,6 +2,8 @@
 #include "Global.h"
 #include "Shader.h"
 #include "Types.h"
+#include "utils/colors.h"
+
 
 GLState gl_state = {0};
 
@@ -72,9 +74,11 @@ void render_quad(float x, float y)
 	mat4 model = GLM_MAT4_IDENTITY_INIT;
 	glm_mat4_identity(model);
 
+	glm_scale_uni(model, 100);
 	glm_translate_x(model, x);
 	glm_translate_y(model, y);
 
+	ShaderSetColor(gl_state.default_shader,"color", ORANGE);
 	ShaderUniformMat4(gl_state.default_shader, "projection", projection);
 	ShaderUniformMat4(gl_state.default_shader, "model", model);
 

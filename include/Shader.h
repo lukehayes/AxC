@@ -3,6 +3,8 @@
 #include "Types.h"
 #include "MathUtil.h"
 #include "FileIO.h"
+#include "utils/colors.h"
+
 
 typedef struct AxShader Shader;
 
@@ -83,6 +85,16 @@ void ShaderUniform2f(const Shader* shader, const char* name, float value1, float
  * @return void
  */
 void ShaderUniform3f(const Shader* shader, const char* name, vec3 value);
+
+/**
+ * Send a three float values into the shader.
+ *
+ * @param const Shader* shader
+ * @param const Shader* name
+ *
+ * @return void
+ */
+void ShaderSetColor(const Shader* shader, const char* name, Color color);
 
 /**
  * Send a Matrix4 uniform into the shader.
