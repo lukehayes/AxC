@@ -9,19 +9,6 @@
 
 #include "Types.h"
 
-/**
- * Wrapper for managing delta time.
- */
-typedef struct math_utils
-{
-	f32 delta;
-	f32 now;
-	f32 previousTime;
-	f32 FPS;
-
-} MathUtils;
-
-extern MathUtils math_utils;
 
 /**
  * Get a random integer value.
@@ -42,7 +29,5 @@ int GetRandInt(int from, int to);
  */
 void PrintMat4(mat4 m);
 
-
-void delta_init();
 
 f32 get_delta_time();

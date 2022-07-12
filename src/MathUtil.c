@@ -1,6 +1,19 @@
 #include "MathUtil.h"
+#include <string.h>
 
-MathUtils math_utils = {0};
+/**
+ * Wrapper for managing delta time.
+ */
+typedef struct math_utils
+{
+	f32 delta;
+	f32 now;
+	f32 previousTime;
+	f32 FPS;
+
+} MathUtils;
+
+static MathUtils math_utils = {0};
 
 
 int GetRandInt(int from, int to)
@@ -42,13 +55,4 @@ f32 get_delta_time()
 
 	return math_utils.delta;
 }
-
-void delta_init()
-{
-	math_utils.delta = 0.0;
-	math_utils.now = 0.0;
-	math_utils.previousTime = 0.0;
-	math_utils.FPS = 60.0;
-}
-
 
