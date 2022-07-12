@@ -63,7 +63,7 @@ typedef char* 	        str;
 typedef const char* 	const_str;
 
 
-typedef vec2 	        V4;
+typedef vec2 	        V2;
 typedef mat4 	        M4;
 
 #define u16_max 		UINT16_MAX
