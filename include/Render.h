@@ -17,13 +17,11 @@ void render_clear(float r, float g, float b);
 /**
  * Clear the screen with related bit masks and a color.
  *
- * @param float r    Red value from 0.0 to 1.0.
- * @param float g    Green value from 0.0 to 1.0.
- * @param float b    Blue value from 0.0 to 1.0.
+ * @param Color color    The color to clear the screen with.
  *
  * @return void
  */
-void render_begin(float r, float g, float b);
+void render_begin(Color color);
 
 /**
  * Render a quad to the screen.

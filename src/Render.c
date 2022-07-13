@@ -13,9 +13,14 @@ void render_clear(float r, float g, float b)
 }
 
 
-void render_begin(float r, float g, float b)
+void render_begin(Color color)
 {
-	glClearColor(r,g,b, 1.0f);
+	glClearColor(
+			color.r,
+			color.g,
+			color.b,
+			1.0f);
+
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	UseShader(gl_state.default_shader);
