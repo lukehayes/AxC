@@ -42,6 +42,18 @@ void render_quad(float x, float y, Color color)
 	ShaderUniformMat4(gl_state.default_shader, "model", model);
 
 
+void render_pixel(float x, float y, Color color)
+{
+	
+	mat4 model = GLM_MAT4_IDENTITY_INIT;
+	glm_mat4_identity(model);
+
+	glm_translate_x(model, x);
+	glm_translate_y(model, y);
+
+	ShaderUniformMat4(gl_state.default_shader, "model", model);
+	ShaderSetColor(gl_state.default_shader,"color", color);
+
 	glBindVertexArray(gl_state.quad_vao);
 	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 	glBindVertexArray(0);

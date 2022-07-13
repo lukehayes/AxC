@@ -36,6 +36,17 @@ void render_begin(float r, float g, float b);
  */
 void render_quad(float x, float y, Color color);
 
+
+/**
+ * Render a single pixel to the screen.
+ *
+ * @param float x        X axis position.
+ * @param float y        Y axis position.
+ * @param Color color    Color of the object.
+ *
+ * @return void
+ */
+void render_pixel(float x, float y, Color color);
 /**
  * Swap buffers and blit the screen.
  */
