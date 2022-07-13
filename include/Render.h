@@ -47,6 +47,7 @@ void render_quad(float x, float y, Color color);
  * @return void
  */
 void render_pixel(float x, float y, Color color);
+
 /**
  * Swap buffers and blit the screen.
  */
