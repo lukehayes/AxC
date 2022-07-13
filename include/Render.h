@@ -1,10 +1,7 @@
 #pragma once
+#include "render_internal.h"
 #include "Types.h"
 #include "Shader.h"
-
-/**
- * Initalize globals, GLFW and OpenGL **/
-void render_init(void);
 
 /**
  * Clear the screen with related bit masks and a color.
@@ -31,32 +28,17 @@ void render_begin(float r, float g, float b);
 /**
  * Render a quad to the screen.
  *
- * @param float x    X axis position.
- * @param float y    Y axis position.
+ * @param float x        X axis position.
+ * @param float y        Y axis position.
+ * @param Color color    Color of the object.
  *
  * @return void
  */
-void render_quad(float x, float y);
+void render_quad(float x, float y, Color color);
 
 /**
  * Swap buffers and blit the screen.
  */
 void render_end();
 
-// ----------------------------------------------------------------------------
-// OpenGL Render Functions 
-// ----------------------------------------------------------------------------
 
-// VAOS etc are stored here.
-typedef struct gl_state
-{
-	GLuint quad_vao;
-	Shader* default_shader;
-} GLState;
-
-extern GLState gl_state;
-
-/**
- * Initialize a quad for OpenGL
- */
-void render_init_quad();
