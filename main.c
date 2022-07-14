@@ -20,9 +20,9 @@ int main(int argc, char *argv[])
 
 		/*printf("Delta: %f \n", get_delta_time());*/
 
-		render_begin(0.1,0.1,0.42);
 		render_quad(0,0);
 		render_quad(20,20);
+		render_begin(BG);
 		render_end();
 	}
 

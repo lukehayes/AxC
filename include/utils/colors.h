@@ -34,3 +34,5 @@ typedef struct Color
 #define BLANK         (Color){ 0.0, 0.0, 0.0 }
 #define MAGENTA       (Color){ 1.0, 0.0, 1.0 }
 #define RAYWHITE      (Color){ 0.961, 0.961, 0.961 }
+
+#define BG            (Color){0.2,0.2,0.2}
