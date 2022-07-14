@@ -28,13 +28,14 @@ void render_begin(Color color)
 	mat4 projection = GLM_MAT4_IDENTITY_INIT;
 	glm_mat4_identity(projection);
 
+	// (0,0) is the top left of the screen.
 	glm_ortho(
-			-(global.width/ 2.0f),
-			global.width / 2.0f,
-			global.height / 2.0f,
-			-(global.height / 2.0f), 
-			-1000.0f,
-			1000.0f,
+			0, // left
+			global.width, // right
+			global.height, // bottom
+			0, // top
+			0.0f,
+			10.0f,
 			projection);
 
 
