@@ -7,8 +7,8 @@
  */
 typedef struct global
 {
-   int         width;
-   int         height;
+   float         width;
+   float         height;
    const_str   title;
 
    GLFWwindow* window;
