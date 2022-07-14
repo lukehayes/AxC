@@ -28,9 +28,15 @@ void render_begin(Color color)
 	mat4 projection = GLM_MAT4_IDENTITY_INIT;
 	glm_mat4_identity(projection);
 
-	glm_ortho(-(global.width/ 2.0f), global.width / 2.0f, 
-		global.height / 2.0f, -(global.height / 2.0f), 
-	  -1000.0f, 1000.0f, projection);
+	glm_ortho(
+			-(global.width/ 2.0f),
+			global.width / 2.0f,
+			global.height / 2.0f,
+			-(global.height / 2.0f), 
+			-1000.0f,
+			1000.0f,
+			projection);
+
 
 	ShaderUniformMat4(gl_state.default_shader, "projection", projection);
 }
