@@ -42,7 +42,7 @@ void render_begin(Color color)
 	ShaderUniformMat4(gl_state.default_shader, "projection", projection);
 }
 
-void render_quad(float x, float y, Color color)
+void render_quad(float x, float y, float scale, Color color)
 {
 	
 	mat4 model = GLM_MAT4_IDENTITY_INIT;
@@ -50,7 +50,7 @@ void render_quad(float x, float y, Color color)
 
 	glm_translate_x(model, x);
 	glm_translate_y(model, y);
-	glm_scale_uni(model, 100);
+	glm_scale_uni(model, scale);
 
 	ShaderSetColor(gl_state.default_shader,"color", color);
 	ShaderUniformMat4(gl_state.default_shader, "model", model);

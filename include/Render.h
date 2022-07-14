@@ -28,11 +28,12 @@ void render_begin(Color color);
  *
  * @param float x        X axis position.
  * @param float y        Y axis position.
+ * @param float scale    Scale of the quad - all axis.
  * @param Color color    Color of the object.
  *
  * @return void
  */
-void render_quad(float x, float y, Color color);
+void render_quad(float x, float y, float scale, Color color);
 
 
 /**
